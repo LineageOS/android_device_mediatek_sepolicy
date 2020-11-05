@@ -1,0 +1,91 @@
+#############################
+# Data files
+#
+
+#############################
+# debugfs files
+#
+
+#############################
+# System files
+#
+
+/system/bin/mobile_log_d u:object_r:mobile_log_d_exec:s0
+/system/bin/aee_core_forwarder u:object_r:aee_core_forwarder_exec:s0
+/system/bin/mdlogger u:object_r:mdlogger_exec:s0
+/system/bin/emdlogger[0-9]+ u:object_r:emdlogger_exec:s0
+/system/bin/netdiag u:object_r:netdiag_exec:s0
+/system/bin/loghidlsysservice u:object_r:loghidlsysservice_exec:s0
+/system/bin/cmddumper u:object_r:cmddumper_exec:s0
+/system/bin/thermalindicator u:object_r:thermalindicator_exec:s0
+/system/bin/em_svr u:object_r:em_svr_exec:s0
+/vendor/bin/em_hidl u:object_r:em_hidl_exec:s0
+/system/bin/aee_aed u:object_r:aee_aed_exec:s0
+/system/bin/aee_aed64 u:object_r:aee_aed_exec:s0
+/system/bin/aee_dumpstate u:object_r:dumpstate_exec:s0
+/(system\/vendor|vendor)/bin/kisd u:object_r:kisd_exec:s0
+/system/bin/lbs_dbg u:object_r:lbs_dbg_exec:s0
+
+# google suggest that move aee_aedv_exec to platform @google_issue_id:64130120
+/(system\/vendor|vendor)/bin/aee_aedv u:object_r:aee_aedv_exec:s0
+/(system\/vendor|vendor)/bin/aee_aedv64 u:object_r:aee_aedv_exec:s0
+/vendor/bin/aeev  u:object_r:aee_aedv_exec:s0
+
+# kisd for Key Manager
+/data/vendor/key_provisioning(/.*)?   u:object_r:key_install_data_file:s0
+
+# storagemanager daemon
+# it is used to mount all storages in meta/factory mode
+/system/bin/storagemanagerd u:object_r:vold_exec:s0
+
+#MTK Bootanim
+/system/bin/mtkbootanimation u:object_r:mtkbootanimation_exec:s0
+/system/bin/boot_logo_updater u:object_r:boot_logo_updater_exec:s0
+
+#MTK vibrator
+/sys/devices/platform/vibrator@0/leds/vibrator(/.*)? u:object_r:sysfs_vibrator:s0
+
+/sys/block/mmcblk0rpmb/size u:object_r:access_sys_file:s0
+
+#MTK Adv Camera Server
+/system/bin/mtk_advcamserver u:object_r:mtk_advcamserver_exec:s0
+
+/system/bin/kpoc_charger u:object_r:kpoc_charger_exec:s0
+
+#MTK Thermald
+/system/bin/thermald u:object_r:thermald_exec:s0
+
+#MTK SN
+/system/bin/sn u:object_r:sn_exec:s0
+
+#MTK ATCI
+/system/bin/atci_service u:object_r:atci_service_exec:s0
+/dev/socket/atci-serv-fw(/.*)? u:object_r:atci_serv_fw_socket:s0
+/dev/socket/atci-service(/.*)? u:object_r:atci_service_socket:s0
+/dev/socket/adb_atci_socket(/.*)? u:object_r:adb_atci_socket:s0
+
+#MTK AAL
+/system/bin/aal u:object_r:aal_exec:s0
+#MTK Carrier express
+/system/bin/usp_service u:object_r:usp_service_exec:s0
+/system/bin/batterywarning u:object_r:batterywarning_exec:s0
+/system/bin/mmp u:object_r:mmp_exec:s0
+/system/bin/GoogleOtaBinder u:object_r:GoogleOtaBinder_exec:s0
+/system/bin/resize2fs   u:object_r:fsck_exec:s0
+/system/bin/resize.f2fs   u:object_r:fsck_exec:s0
+/system/bin/guiext-server u:object_r:guiext-server_exec:s0
+
+#MTK MDM
+/system/bin/md_monitor u:object_r:md_monitor_exec:s0
+/data/md_mon(/.*)? u:object_r:md_monitor_data_file:s0
+
+/system/bin/hdmi u:object_r:hdmi_exec:s0
+
+#MTK MET
+/system/bin/met_log_d u:object_r:met_log_d_exec:s0
+
+#label for MOTA file access
+#path="/proc/cmdline"
+/proc/cmdline u:object_r:mota_proc_file:s0
+
+/eng u:object_r:rootfs:s0

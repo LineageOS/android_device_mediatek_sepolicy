@@ -1,0 +1,45 @@
+# ==============================================
+# MTK Policy Rule 
+# ==============================================
+
+
+# Date : 2016/07/12
+# Purpose : Issue submitter need creat folder on SD card
+allow system_app vfat:dir create;
+
+# Date: 2017/07/01
+# Change to simple policy
+allow system_app media_rw_data_file:dir {r_dir_perms w_dir_perms};
+allow system_app media_rw_data_file:file {r_file_perms w_file_perms};
+
+#Dat: 2017/07/13
+#Purpose: allow system app to read/open system data file
+allow system_app system_data_file:dir { read open };
+
+# Date: 2014/08/21
+# Stage: BaseUT
+# Purpose: connect to native atci_service
+# Package Name: com.mediatek.atci.service
+allow system_app atci_serv_fw_socket:sock_file write;
+allow system_app atci_service:unix_stream_socket connectto;
+
+# Date : 2016/02/26
+# Operation: BSP C2K test case support
+# Purpose: allow atci to use NSIOT firewall
+# Package: com.mediatek.atci.service
+allow system_app netd_socket:sock_file write;
+
+# Date : WK17.29
+# Operation : Migration
+# Purpose: Allow to get DNS system properties
+set_prop(system_app, net_dns_prop);
+
+# Date: 2016/11/10
+# Purpose: [MDM] Modem monitor config
+# Package Name: com.mediatek.mdmconfig
+set_prop(system_app, config_prop);
+
+# Date : 2018/06/21
+# Operation : P Migration
+# Purpose : Allow AtciService to set ATCI property
+set_prop(system_app, mtk_atci_sys_prop);
