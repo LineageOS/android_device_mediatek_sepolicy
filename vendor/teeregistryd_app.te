@@ -1,0 +1,29 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+type teeregistryd_app, domain;
+
+typeattribute teeregistryd_app coredomain;
+
+app_domain(teeregistryd_app)
+
+binder_service(teeregistryd_app)
+binder_use(teeregistryd_app)
+
+add_service(teeregistryd_app, teeregistry_service)
+
+hal_client_domain(teeregistryd_app, hal_teeregistry)
+hal_client_domain(teeregistryd_app, hal_allocator)
+
+#allow teeregistryd_app teeregistry_service:service_manager add;
+
+allow teeregistryd_app activity_service:service_manager find;
+allow teeregistryd_app connectivity_service:service_manager find;
+allow teeregistryd_app display_service:service_manager find;
+allow teeregistryd_app network_management_service:service_manager find;
+allow teeregistryd_app self:udp_socket create;
+allow teeregistryd_app tee_service:service_manager find;
+
+allow teeregistryd_app system_app_data_file:dir { add_name getattr write };
+allow teeregistryd_app system_app_data_file:file { create open write };
