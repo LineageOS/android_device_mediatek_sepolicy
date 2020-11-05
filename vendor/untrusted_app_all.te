@@ -1,0 +1,5 @@
+# ==============================================
+# MTK Policy Rule
+# ==============================================
+
+allow untrusted_app_all tee_service:service_manager find;
