@@ -1,0 +1,21 @@
+allow radio ppl_agent_service:service_manager find;
+
+set_prop(radio, ctl_atcid-daemon-u_prop);
+set_prop(radio, ctl_atci_service_prop);
+set_prop(radio, mtk_atci_sys_prop);
+set_prop(radio, mtk_aal_prop);
+
+allow radio sysfs_portmode:file r_file_perms;
+allow radio sysfs_android0_usb:dir search;
+allow radio sysfs_android0_usb:file r_file_perms;
+allow radio sysfs_android_usb:dir search;
+allow radio sysfs_android_usb:file r_file_perms;
+allow radio aal_service:service_manager find;
+
+get_prop(radio, mtk_cta_set_prop);
+get_prop(radio, mtk_rsc_sys_prop);
+get_prop(radio, init_svc_md_monitor_prop)
+get_prop(radio, mtk_dmc_prop);
+
+allow radio sysfs_musb_hdrc:dir search;
+allow radio sysfs_musb_hdrc:file r_file_perms;

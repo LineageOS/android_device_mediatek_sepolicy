@@ -1,0 +1,18 @@
+type aal_exec, system_file_type, exec_type, file_type;
+type aal ,domain;
+typeattribute aal coredomain;
+
+init_daemon_domain(aal)
+
+binder_use(aal)
+binder_call(aal, binderservicedomain)
+binder_service(aal)
+
+allow aal graphics_device:chr_file { read open ioctl };
+allow aal graphics_device:dir search;
+allow aal aal_service:service_manager add;
+allow aal permission_service:service_manager { find };
+allow aal sensorservice_service:service_manager { find };
+allow aal system_server:unix_stream_socket { read write };
+
+set_prop(aal, mtk_aal_prop)

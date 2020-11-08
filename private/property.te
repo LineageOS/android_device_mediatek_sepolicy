@@ -1,0 +1,13 @@
+type ctl_atcid-daemon-u_prop, property_type, extended_core_property_type;
+type ctl_atci_service_prop, property_type, extended_core_property_type;
+type ctl_campostalgo_prop, property_type, extended_core_property_type;
+
+type mtk_atci_sys_prop, property_type, extended_core_property_type;
+type mtk_aal_prop, property_type, extended_core_property_type;
+type mtk_permission_control_prop, property_type, extended_core_property_type;
+type mtk_cta_set_prop, property_type, extended_core_property_type;
+type mtk_rsc_sys_prop, property_type, extended_core_property_type;
+
+type terservice_prop, property_type, extended_core_property_type;
+
+type netflix_bsp_rev_prop, property_type;

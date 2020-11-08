@@ -1,0 +1,2 @@
+set_prop(vendor_init, terservice_prop)
+set_prop(vendor_init, netflix_bsp_rev_prop)

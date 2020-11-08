@@ -1,0 +1,30 @@
+type aee_core_forwarder_exec, system_file_type, exec_type, file_type;
+typeattribute aee_core_forwarder coredomain;
+
+init_daemon_domain(aee_core_forwarder)
+
+allow aee_core_forwarder sdcard_type:dir create_dir_perms;
+allow aee_core_forwarder sdcard_type:file create_file_perms;
+allow aee_core_forwarder self:capability { fsetid setgid };
+allow aee_core_forwarder kernel:fifo_file read;
+allow aee_core_forwarder domain:dir r_dir_perms;
+allow aee_core_forwarder domain:file r_file_perms;
+allow aee_core_forwarder sysfs_wake_lock:file rw_file_perms;
+allow aee_core_forwarder self:capability2 block_suspend;
+allow aee_core_forwarder mnt_user_file:dir search;
+allow aee_core_forwarder mnt_user_file:lnk_file read;
+allow aee_core_forwarder storage_file:dir search;
+allow aee_core_forwarder storage_file:lnk_file read;
+allow aee_core_forwarder kernel:fd use;
+allow aee_core_forwarder tmpfs:dir search;
+allow aee_core_forwarder rootfs:file r_file_perms;
+
+dontaudit aee_core_forwarder untrusted_app:dir search;
+dontaudit aee_core_forwarder self:capability sys_ptrace;
+
+allow aee_core_forwarder media_rw_data_file:dir w_dir_perms;
+allow aee_core_forwarder media_rw_data_file:file { create open write };
+allow aee_core_forwarder self:capability sys_nice;
+allow aee_core_forwarder aee_aed:unix_stream_socket connectto;
+
+get_prop(aee_core_forwarder, hwservicemanager_prop)
