@@ -1,0 +1,12 @@
+type resize, domain;
+type resize_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(resize)
+allow resize resize_exec:file execute_no_trans;
+allow resize devpts:chr_file { read write open getattr ioctl };
+allow resize kmsg_device:chr_file { write open };
+allow resize userdata_block_device:blk_file rw_file_perms;
+allow resize block_device:dir search;
+allow resize resize:capability sys_admin;
+allow resize labeledfs:filesystem unmount;
+allow resize property_socket:sock_file write;
+allow resize init:unix_stream_socket connectto;

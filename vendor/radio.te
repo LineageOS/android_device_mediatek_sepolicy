@@ -1,0 +1,140 @@
+allow radio sysfs_keypad_file:dir { r_dir_perms };
+allow radio sysfs_keypad_file:file { w_file_perms };
+allow radio surfaceflinger:fifo_file { rw_file_perms };
+allow radio debugfs_usb20_phy:file { read open getattr };
+allow radio debugfs_usb20_phy:dir search;
+allow radio mt_otg_test_device:chr_file { read write ioctl open };
+allow radio mtgpio_device:chr_file { read ioctl open };
+allow radio stpbt_device:chr_file { read write open };
+allow radio stpant_device:chr_file { read write open };
+allow radio bt_int_adp_socket:sock_file write;
+allow radio mt6605_device:chr_file { read write ioctl open getattr };
+allow radio nfc_socket:dir { write add_name remove_name search };
+allow radio system_prop:property_service set;
+allow radio em_svr:unix_stream_socket connectto;
+allowxperm radio self:udp_socket ioctl { SIOCIWFIRSTPRIV-SIOCIWFIRSTPRIV_09 SIOCIWFIRSTPRIV_0B SIOCSIWESSID SIOCSIWMODE };
+allow radio block_device:dir search;
+allow radio ttyGS_device:chr_file { open read write ioctl };
+allow radio media_rw_data_file:dir { create_dir_perms };
+allow radio media_rw_data_file:file { create_file_perms };
+allow radio ccci_fsd:dir { r_dir_perms };
+allow radio nvdata_file:dir search;
+allow radio nvdata_file:file rw_file_perms;
+set_prop(radio, mtk_em_net_auto_tethering_prop)
+binder_call(radio, hal_telephony)
+allow radio hal_graphics_composer_default:fd use;
+get_prop(radio, mtk_telephony_sensitive_prop)
+binder_call(radio, mtk_hal_imsa)
+hal_client_domain(radio, hal_imsa)
+binder_call(radio,mtk_hal_audio)
+set_prop(radio, system_radio_prop)
+allow radio hal_nfc_hwservice:hwservice_manager find;
+binder_call(radio, hal_nfc)
+binder_call(hal_nfc, radio)
+hwbinder_use(radio);
+typeattribute radio halclientdomain;
+typeattribute radio hal_nfc_client;
+allow radio nfc_socket:sock_file { create write unlink setattr };
+set_prop(radio, system_prop)
+allow radio mtk_hal_power_hwservice:hwservice_manager find;
+binder_call(radio, mtk_hal_power)
+get_prop(radio, wmt_prop)
+get_prop(radio, tel_switch_prop)
+get_prop(radio, mtk_debug_md_reset_prop)
+allow radio sysfs_batteryinfo:dir search;
+allow radio sysfs_vbus:file { read getattr open };
+allow radio sysfs_battery_consumption:file r_file_perms;
+allow radio sysfs_power_on_vol:file r_file_perms;
+allow radio sysfs_power_off_vol:file r_file_perms;
+allow radio sysfs_fg_disable:file w_file_perms;
+allow radio sysfs_dis_nafg:file w_file_perms;
+allow radio sysfs_tpd_debug:dir { search read open };
+allow radio sysfs_tpd_setting:dir { search read open };
+allow radio sysfs_pmu:dir { search };
+allow radio sysfs_pmu:file { read };
+allow radio sysfs_pmu:lnk_file { read };
+allow radio sysfs_spm:dir { search };
+allow radio sysfs_headset:file { read open };
+hal_client_domain(radio, mtk_hal_em)
+set_prop(radio, vendor_sim_system_prop)
+get_prop(radio, vendor_default_prop)
+set_prop(radio, mtk_bgdata_disabled)
+set_prop(radio, mtk_telecom_vibrate)
+set_prop(radio, mtk_gprs_attach_type)
+binder_call(radio, lbs_hidl_service)
+allow radio mtk_hal_lbs_hwservice:hwservice_manager find;
+set_prop(radio, mtk_power_off_md_type)
+get_prop(radio, persist_mtk_aee_prop);
+set_prop(radio, mtk_em_sys_prop)
+allow radio sys_usb_rawbulk:file { r_file_perms };
+allow radio sys_usb_rawbulk:dir { r_dir_perms };
+set_prop(radio, persist_xcap_rawurl_prop)
+allow radio aee_aed:unix_stream_socket connectto;
+allow radio debugfs_regmap:dir { search };
+get_prop(radio, vendor_usb_prop);
+allow radio rild_mal_socket:sock_file write;
+allow radio rild_mal_at_socket:sock_file write;
+allow radio rild_mal_md2_socket:sock_file write;
+allow radio rild_mal_at_md2_socket:sock_file write;
+allow radio mtk_registry_service:service_manager add;
+add_service(radio, mtk_radio_service)
+add_service(radio, mtk_phonesubinfo_service)
+get_prop(radio, ril_active_md_prop)
+add_service(radio, mtk_simphonebook_service)
+hal_client_domain(radio, hal_wfo)
+get_prop(radio, mtk_volte_prop)
+get_prop(radio, mtk_wfc_prop)
+get_prop(radio, mtk_vilte_prop)
+get_prop(radio, mtk_viwifi_prop)
+get_prop(radio, mtk_vt_prop)
+allow radio vtservice:binder call;
+allow radio vtservice:binder transfer;
+allow radio vtservice_service:service_manager find;
+set_prop(radio, vendor_imsconfig_prop)
+get_prop(radio, mtk_cxp_vendor_prop)
+hal_client_domain(radio,mtk_hal_netdagent)
+allow radio nfc_service:service_manager find;
+allow radio st21nfc_device:chr_file { read write getattr ioctl open };
+set_prop(radio,hwservicemanager_prop);
+set_prop(radio,media_wfd_prop);
+hal_client_domain(radio, hal_rcs);
+get_prop(radio, mtk_vsim_prop)
+get_prop(radio, mtk_vsim_sys_prop)
+set_prop(radio, mtk_vsim_sys_prop)
+set_prop(radio, ctl_start_prop)
+set_prop(radio, ctl_stop_prop)
+set_prop(radio, vendor_ims_xcap_prop)
+set_prop(radio, logmuch_prop)
+get_prop(radio, mtk_log_tel_dbg_prop)
+set_prop(radio, mtk_em_tel_log_prop)
+set_prop(radio, log_tag_prop)
+get_prop(radio, mtk_ims_prop)
+hal_client_domain(radio, hal_atci)
+allow radio mtk_hal_pplagent_hwservice:hwservice_manager find;
+allow radio ppl_agent:binder call;
+allow radio nvram_agent_binder:binder call;
+allow radio nvram_agent_binder_hwservice:hwservice_manager find;
+set_prop(radio, mtk_selfreg_prop)
+set_prop(radio, mtk_ctmslot_prop)
+set_prop(radio, vendor_cdma_prop)
+set_prop(radio, mtk_cdma_ecm_prop);
+set_prop(radio, vendor_supp_serv_prop)
+set_prop(radio, mtk_common_data_prop)
+set_prop(radio, mtk_world_phone_prop)
+set_prop(radio, mtk_capability_switch_prop)
+get_prop(radio, persist_vendor_vzw_device_type)
+get_prop(radio, mtk_rtt_prop)
+get_prop(radio, mtk_wfc_entitlement_prop)
+set_prop(radio, mtk_wfc_entitlement_prop)
+get_prop(radio, mtk_uce_support_prop)
+set_prop(radio, mtk_uce_support_prop)
+get_prop(radio, mtk_subsidylock_prop)
+set_prop(radio, mtk_subsidylock_prop_connect)
+add_service(radio, mtk_gwsd_service)
+hal_client_domain(radio, hal_pq)
+allow radio mtk_presence_service:service_manager find;
+allow rild system_app:binder { transfer call };
+hal_client_domain(radio, md_monitor_hal);
+set_prop(radio, config_prop);
+get_prop(radio, mtk_vonr_prop)
+get_prop(radio, mtk_vinr_prop)

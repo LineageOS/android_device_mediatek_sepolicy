@@ -1,0 +1,96 @@
+typeattribute system_app mlstrustedsubject;
+hal_client_domain(system_app, hal_nvramagent);
+hal_client_domain(system_app, mtk_hal_lbs)
+get_prop(system_app, mtk_telephony_sensitive_prop)
+allow system_app mtk_thermal_config_prop:file { getattr open read };
+allow system_app aee_exp_data_file:file r_file_perms;
+allow system_app aee_exp_data_file:dir r_dir_perms;
+hal_client_domain(system_app, hal_mms)
+get_prop(system_app, vendor_default_prop)
+allow system_app mtk_hal_hdmi_hwservice:hwservice_manager find;
+allow system_app mtk_hal_hdmi:binder call;
+allow system_app self:netlink_kobject_uevent_socket {read bind create setopt };
+r_dir_file(system_app, sysfs_switch);
+allow system_app proc_secmem:file rw_file_perms;
+allow system_app touch_device:chr_file { read ioctl open };
+allow system_app apk_private_data_file:dir getattr;
+allow system_app asec_image_file:dir getattr;
+allow system_app dontpanic_data_file:dir getattr;
+allow system_app drm_data_file:dir getattr;
+allow system_app install_data_file:file getattr;
+allow system_app lost_found_data_file:dir getattr;
+allow system_app media_data_file:dir getattr;
+allow system_app property_data_file:dir getattr;
+allow system_app shell_data_file:dir search;
+allow system_app proc_thermal:dir search;
+allow system_app proc_thermal:file { read getattr open write };
+allow system_app proc_mtkcooler:dir search;
+allow system_app proc_mtkcooler:file { read getattr open write };
+allow system_app proc_mtktz:dir search;
+allow system_app proc_mtktz:file  { read getattr open write };
+allow system_app proc_slogger:file { read getattr open write };
+hal_client_domain(system_app, hal_pq)
+allow system_app debugfs_ion:dir search;
+hal_client_domain(system_app, hal_presence)
+allow system_app mtk_carrierexpress_service:service_manager add;
+get_prop(system_app, mtk_volte_prop)
+get_prop(system_app, mtk_wfc_prop)
+get_prop(system_app, mtk_vt_prop)
+set_prop(system_app, usp_srv_prop)
+get_prop(system_app, mtk_cxp_vendor_prop)
+set_prop(system_app, radio_prop)
+set_prop(system_app, persist_vendor_vzw_device_type)
+set_prop(system_app, mtk_uce_support_prop)
+set_prop(system_app, mtk_rcs_support_prop)
+set_prop(system_app, mtk_clientapi_support_prop)
+hal_client_domain(system_app, hal_rcs)
+allow system_app system_data_file:file {open execute execute_no_trans};
+allow system_app ota_package_file:dir { read open write create remove_name search rename add_name getattr };
+allow system_app ota_package_file:file { create_file_perms };
+allow system_app update_engine:binder { call transfer };
+allow system_app mtk_update_prop:property_service set;
+hal_client_domain(system_app,mtk_hal_netdagent)
+allow system_app cache_file:dir { write search create add_name remove_name };
+allow system_app cache_file:file { read write create open getattr unlink };
+allow system_app cache_recovery_file:dir { write search add_name remove_name };
+allow system_app cache_recovery_file:file { read write create open getattr unlink };
+allow system_app mtk_hal_pplagent_hwservice:hwservice_manager find;
+allow system_app ppl_agent:binder call;
+set_prop(system_app, mtk_rtt_prop)
+hal_client_domain(system_app, hal_atci)
+set_prop(system_app, mtk_cba_activation)
+get_prop(system_app, mtk_system_update_support_prop)
+get_prop(system_app, mtk_wfc_opt_in_prop)
+allow system_app osi:tcp_socket { create connect write read bind accept listen getattr setattr getopt setopt };
+get_prop(system_app, mtk_vsim_sys_prop)
+set_prop(system_app, mtk_vsim_sys_prop)
+allow system_app block_device:dir search;
+set_prop(system_app, mtk_update_prop)
+get_prop(system_app, mtk_ss_vendor_prop)
+allow system_app mtk_hal_neuralnetworks:binder { call transfer };
+allow system_app debugfs_ion:dir search;
+hwbinder_use(system_app)
+hal_client_domain(system_app, hal_telephony)
+allow rild system_app:binder call;
+allow system_app mtk_hal_rild_hwservice:hwservice_manager find;
+allow system_app rild:binder { call transfer };
+get_prop(system_app, mtk_subsidylock_prop)
+set_prop(system_app, mtk_subsidylock_prop_connect)
+allow system_app mtk_presence_service:service_manager add;
+allow system_app mtk_hal_rild_hwservice:hwservice_manager find;
+allow system_app rild:binder { transfer call };
+hal_client_domain(system_app, hal_clientapi)
+allow system_app tkcore_admin_device:chr_file rw_file_perms;
+get_prop(system_app, mtk_opt_in_url_prop)
+get_prop(system_app, mtk_apptoken_required_prop)
+get_prop(system_app, mtk_em_tel_log_prop);
+hal_client_domain(system_app, mtk_hal_apm)
+get_prop(system_app, mtk_dmc_prop)
+get_prop(system_app, mtk_cta_support_prop);
+get_prop(system_app, mtk_vonr_prop)
+get_prop(system_app, mtk_vinr_prop)
+get_prop(system_app, mtk_wfc_entitlement_prop)
+allow system_app mtk_audiohal_data_file:dir create_dir_perms;
+allow system_app mtk_audiohal_data_file:file create_file_perms;
+allow system_app mtk_hal_log_hwservice:hwservice_manager find;
+binder_call(system_app, loghidlvendorservice);

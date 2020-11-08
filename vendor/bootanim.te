@@ -1,0 +1,18 @@
+allow bootanim bootani_prop:property_service set;
+allow bootanim qemu_pipe_device:chr_file rw_file_perms;
+allow bootanim proc_ged:file rw_file_perms;
+allow bootanim proc_perfmgr:dir r_dir_perms;
+allow bootanim proc_perfmgr:file r_file_perms;
+
+allowxperm bootanim proc_ged:file ioctl { proc_ged_ioctls };
+allowxperm bootanim proc_perfmgr:file ioctl {
+  PERFMGR_FPSGO_QUEUE
+  PERFMGR_FPSGO_DEQUEUE
+  PERFMGR_FPSGO_QUEUE_CONNECT
+  PERFMGR_FPSGO_BQID
+};
+
+allow bootanim gpu_device:dir search;
+allow bootanim proc_secmem:file { read open};
+allow bootanim dri_device:chr_file { read write open ioctl };
+allow bootanim debugfs_ion:dir search;

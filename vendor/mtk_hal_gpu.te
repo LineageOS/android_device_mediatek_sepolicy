@@ -1,0 +1,17 @@
+type mtk_hal_gpu, domain;
+type mtk_hal_gpu_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(mtk_hal_gpu)
+hwbinder_use(mtk_hal_gpu);
+hal_server_domain(mtk_hal_gpu, hal_gpu)
+add_hwservice(hal_gpu, mtk_hal_gpu_hwservice)
+allow hal_gpu_client mtk_hal_gpu_hwservice:hwservice_manager find;
+hal_client_domain(mtk_hal_gpu, hal_allocator)
+allow mtk_hal_gpu graphics_device:chr_file rw_file_perms;
+allow mtk_hal_gpu debugfs_ged:dir rw_dir_perms;
+allow mtk_hal_gpu debugfs_ged:file rw_file_perms;
+allow mtk_hal_gpu proc_ged:file rw_file_perms;
+allowxperm mtk_hal_gpu proc_ged:file ioctl { proc_ged_ioctls };
+allow mtk_hal_gpu hal_graphics_allocator_default:fd use;
+allow mtk_hal_gpu ion_device:chr_file r_file_perms;
+allow mtk_hal_gpu debugfs_ion:dir search;
+allow mtk_hal_gpu merged_hal_service:fd use;

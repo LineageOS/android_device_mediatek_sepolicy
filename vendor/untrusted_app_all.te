@@ -1,0 +1,4 @@
+allow untrusted_app_all tee_service:service_manager find;
+allow untrusted_app_all debugfs_ion:dir search;
+allow untrusted_app_all sysfs_mmcblk:dir search;
+get_prop(untrusted_app_all, mtk_nn_option_prop)

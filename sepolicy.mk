@@ -3,3 +3,6 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIRS += \
 
 BOARD_PLAT_PUBLIC_SEPOLICY_DIRS += \
     device/mediatek/sepolicy/public
+
+BOARD_SEPOLICY_DIRS := \
+    device/mediatek/sepolicy/vendor

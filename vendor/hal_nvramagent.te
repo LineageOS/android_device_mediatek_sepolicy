@@ -1,0 +1,3 @@
+binder_call(hal_nvramagent_client, hal_nvramagent_server)
+allow hal_nvramagent_client nvram_agent_binder_hwservice:hwservice_manager find;
+add_hwservice(hal_nvramagent_server, nvram_agent_binder_hwservice)

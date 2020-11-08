@@ -1,0 +1,3 @@
+binder_call(hal_omadm_client, hal_omadm_server)
+binder_call(hal_omadm_server, hal_omadm_client)
+allow hal_omadm_client mtk_hal_omadm_hwservice:hwservice_manager find;

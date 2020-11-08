@@ -1,0 +1,91 @@
+allow mediacodec devmap_device:chr_file { ioctl };
+allow mediacodec Vcodec_device:chr_file rw_file_perms;
+allow mediacodec M4U_device_device:chr_file rw_file_perms;
+allow mediacodec proc:file r_file_perms;
+allow mediacodec debugfs_binder:dir search;
+allow mediacodec MTK_SMI_device:chr_file { ioctl read open };
+allow mediacodec storage_file:lnk_file {read write open};
+allow mediacodec tmpfs:dir search;
+allow mediacodec mnt_user_file:dir {write read search};
+allow mediacodec mnt_user_file:lnk_file {read write};
+allow mediacodec sdcard_type:dir {write read search add_name remove_name};
+allow mediacodec sdcard_type:file {getattr write read create open append unlink};
+allow mediacodec nvram_data_file:dir w_dir_perms;
+allow mediacodec nvram_data_file:file create_file_perms;
+allow mediacodec nvram_data_file:lnk_file read;
+allow mediacodec nvdata_file:lnk_file read;
+allow mediacodec nvdata_file:dir w_dir_perms;
+allow mediacodec nvdata_file:file create_file_perms;
+allow mediacodec devmap_device:chr_file r_file_perms;
+allow mediacodec proc_meminfo:file {read getattr open};
+allow mediacodec mtk_sched_device:chr_file { read write ioctl open };
+allow mediacodec mediacodec_data_file:file create_file_perms;
+allow mediacodec mediacodec_data_file:dir create_dir_perms;
+allow mediacodec sec_device:chr_file r_file_perms;
+allow mediacodec surfaceflinger:file getattr;
+allow mediacodec sysfs_lowmemorykiller:file { read open };
+allow mediacodec proc_mtkcooler:dir search;
+allow mediacodec proc_mtktz:dir search;
+allow mediacodec proc_thermal:dir search;
+allow mediacodec proc_mtkcooler:file { read write open };
+allow mediacodec proc_mtktz:file { read write open getattr };
+allow mediacodec proc_thermal:file { read write open getattr};
+allow mediacodec thermal_manager_data_file:file create_file_perms;
+allow mediacodec thermal_manager_data_file:dir { rw_dir_perms setattr };
+allow mediacodec thermal_manager_data_file:dir search;
+allow mediacodec untrusted_app:dir search;
+allow mediacodec MJC_device:chr_file { read write ioctl open };
+allow mediacodec MtkCodecService:binder call;
+allow mediacodec MtkCodecService:binder transfer;
+allow mediacodec proc_ged:file rw_file_perms;
+allowxperm mediacodec proc_ged:file ioctl { proc_ged_ioctls };
+allow mediacodec surfaceflinger:fifo_file rw_file_perms;
+allow mediacodec gpu_device:dir search;
+allow mediacodec vndbinder_device:chr_file rw_file_perms;
+vndbinder_use(mediacodec)
+allow mediacodec system_file:dir r_dir_perms;
+allow mediacodec debugfs_ion:dir search;
+allow mediacodec mtk_cmdq_device:chr_file { read ioctl open };
+allow mediacodec mtk_mdp_device:chr_file rw_file_perms;
+allow mediacodec sw_sync_device:chr_file rw_file_perms;
+allow mediacodec mtk_hal_power_hwservice:hwservice_manager find;
+allow mediacodec mtk_hal_power:binder call;
+allow mediacodec mtk_hal_power:unix_stream_socket connectto;
+set_prop(mediacodec, mtk_thermal_config_prop)
+allow mediacodec graphics_device:chr_file { ioctl open read };
+allow mediacodec graphics_device:dir search;
+allow mediacodec proc_m4u:file r_file_perms;
+allowxperm mediacodec proc_m4u:file ioctl MTK_M4U_T_SEC_INIT;
+allowxperm mediacodec proc_m4u:file ioctl MTK_M4U_T_CONFIG_PORT;
+allowxperm mediacodec proc_m4u:file ioctl MTK_M4U_T_CACHE_SYNC;
+allowxperm mediacodec proc_m4u:file ioctl MTK_M4U_T_CONFIG_PORT_ARRAY;
+allow mediacodec sysfs_concurrency_scenario:file rw_file_perms;
+allow mediacodec sysfs_concurrency_scenario:dir search;
+allow mediacodec proc_secmem:file { read write open};
+allow mediacodec init:unix_stream_socket connectto;
+allow mediacodec mobicore_data_file:file { read open getattr};
+allow mediacodec mobicore_user_device:chr_file { read write ioctl open };
+allow mediacodec property_socket:sock_file write;
+allow mediacodec mobicore:unix_stream_socket connectto;
+allow mediacodec proc_secmem:file { read write ioctl open};
+allow mediacodec mobicore_data_file:dir search;
+allow mediacodec persist_data_file:file { read getattr open };
+allow mediacodec persist_data_file:dir search;
+allow mediacodec debugfs_fb:dir search;
+allow mediacodec dri_device:chr_file { read write open ioctl };
+allow mediacodec proc_mtktz:dir search;
+allow mediacodec proc_mtktz:file { read open };
+get_prop(mediacodec, mtk_em_video_log_acodec_prop)
+get_prop(mediacodec, mtk_em_video_log_sf_postbuffer_prop)
+get_prop(mediacodec, mtk_em_video_log_omx_prop)
+get_prop(mediacodec, mtk_em_video_log_vdec_prop)
+get_prop(mediacodec, mtk_em_video_log_svp_prop)
+get_prop(mediacodec, mtk_em_video_log_mjc_prop)
+get_prop(mediacodec, mtk_em_video_venc_h264_prop)
+hal_client_domain(mediacodec, hal_pq)
+hal_client_domain(mediacodec, hal_allocator)
+hal_client_domain(mediacodec, hal_mtkcodecservice)
+hal_client_domain(mediacodec, hal_capi)
+allow mediacodec teei_client_device:chr_file rw_file_perms;
+allow mediacodec proc_chip:dir r_dir_perms;
+allow mediacodec proc_chip:file r_file_perms;

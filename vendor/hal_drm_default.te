@@ -1,0 +1,3 @@
+vndbinder_use(hal_drm_default);
+allow hal_drm_default debugfs_tracing:file write;
+allow hal_drm_default debugfs_ion:dir search;

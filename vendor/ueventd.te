@@ -1,0 +1,10 @@
+allow ueventd proc_net:file r_file_perms;
+allow ueventd device:chr_file { relabelfrom relabelto };
+allow ueventd m_acc_misc_device:chr_file { relabelfrom relabelto };
+allow ueventd m_mag_misc_device:chr_file { relabelfrom relabelto };
+allow ueventd tmpfs:lnk_file r_file_perms;
+allow ueventd sysfs:file setattr;
+allow ueventd platform_app:fd use;
+allow ueventd sysfs_md32:file { write open };
+allow ueventd sysfs_scp:file { write open };
+allow ueventd sysfs_sspm:file { write open };

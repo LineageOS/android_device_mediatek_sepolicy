@@ -1,0 +1,20 @@
+type mtk_hal_pq, domain;
+type mtk_hal_pq_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(mtk_hal_pq)
+hwbinder_use(mtk_hal_pq);
+hal_server_domain(mtk_hal_pq, hal_pq)
+add_hwservice(hal_pq_server, mtk_hal_pq_hwservice)
+hal_client_domain(mtk_hal_pq, hal_allocator)
+allow mtk_hal_pq graphics_device:chr_file { read write open ioctl };
+allow mtk_hal_pq init:unix_stream_socket connectto;
+allow mtk_hal_pq property_socket:sock_file write;
+allow mtk_hal_pq fwk_sensor_hwservice:hwservice_manager find;
+set_prop(mtk_hal_pq, mtk_pq_prop)
+allow mtk_hal_pq system_data_file:lnk_file read;
+allow mtk_hal_pq nvdata_file:dir { write search add_name };
+allow mtk_hal_pq nvdata_file:file { read write getattr setattr open create };
+allow mtk_hal_pq nvram_data_file:dir search;
+allow mtk_hal_pq nvram_data_file:dir w_dir_perms;
+allow mtk_hal_pq nvram_data_file:file create_file_perms;
+allow mtk_hal_pq nvram_data_file:lnk_file read;
+allow mtk_hal_pq nvdata_file:lnk_file read;

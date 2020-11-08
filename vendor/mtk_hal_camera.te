@@ -1,0 +1,203 @@
+type mtk_hal_camera, domain;
+type mtk_hal_camera_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(mtk_hal_camera)
+hal_server_domain(mtk_hal_camera, hal_camera)
+hal_server_domain(mtk_hal_camera, mtk_hal_bgs)
+hwbinder_use(mtk_hal_camera)
+vndbinder_use(mtk_hal_camera)
+allow mtk_hal_camera hwservicemanager_prop:file { open read getattr };
+binder_call(mtk_hal_camera, cameraserver)
+binder_call(mtk_hal_camera, shell)
+binder_call(mtk_hal_camera, aee_aedv)
+binder_call(mtk_hal_camera, hal_graphics_allocator)
+binder_call(mtk_hal_camera, mtk_hal_power)
+allow mtk_hal_camera hal_graphics_mapper_hwservice:hwservice_manager find;
+allow mtk_hal_camera fwk_sensor_hwservice:hwservice_manager find;
+allow mtk_hal_camera mtk_hal_power_hwservice:hwservice_manager find;
+allow mtk_hal_camera nvram_data_file:lnk_file { read write getattr setattr read create open };
+allow mtk_hal_camera nvdata_file:lnk_file { read write getattr setattr read create open };
+hal_client_domain(mtk_hal_camera, hal_graphics_allocator)
+allow mtk_hal_camera proc:file rw_file_perms;
+allow mtk_hal_camera proc_mtk_jpeg:file r_file_perms;
+allowxperm mtk_hal_camera proc_mtk_jpeg:file ioctl {
+     JPG_BRIDGE_ENC_IO_INIT
+     JPG_BRIDGE_ENC_IO_CONFIG
+     JPG_BRIDGE_ENC_IO_WAIT
+     JPG_BRIDGE_ENC_IO_DEINIT
+     JPG_BRIDGE_ENC_IO_START
+     };
+allow mtk_hal_camera sysfs:file { read write open getattr };
+allow mtk_hal_camera camera_sysram_device:chr_file r_file_perms;
+allow mtk_hal_camera camera_pipemgr_device:chr_file r_file_perms;
+allow mtk_hal_camera camera_isp_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_dip_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_tsf_device:chr_file rw_file_perms;
+allow mtk_hal_camera kd_camera_hw_device:chr_file rw_file_perms;
+allow mtk_hal_camera kd_camera_flashlight_device:chr_file rw_file_perms;
+allow mtk_hal_camera flashlight_device:chr_file rw_file_perms;
+allow mtk_hal_camera lens_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_fdvt_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_dpe_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_mfb_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_wpe_device:chr_file rw_file_perms;
+allow mtk_hal_camera mtk_jpeg_device:chr_file r_file_perms;
+allow mtk_hal_camera ccu_device:chr_file rw_file_perms;
+allow mtk_hal_camera vpu_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_rsc_device:chr_file rw_file_perms;
+allow mtk_hal_camera camera_owe_device:chr_file rw_file_perms;
+allow mtk_hal_camera MAINAF_device:chr_file rw_file_perms;
+allow mtk_hal_camera MAIN2AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera SUBAF_device:chr_file rw_file_perms;
+allow mtk_hal_camera FM50AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera AD5820AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera DW9714AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera DW9814AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera AK7345AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera DW9714A_device:chr_file rw_file_perms;
+allow mtk_hal_camera LC898122AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera LC898212AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera BU6429AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera DW9718AF_device:chr_file rw_file_perms;
+allow mtk_hal_camera BU64745GWZAF_device:chr_file rw_file_perms;
+allow mtk_hal_camera CAM_CAL_DRV_device:chr_file rw_file_perms;
+allow mtk_hal_camera CAM_CAL_DRV1_device:chr_file rw_file_perms;
+allow mtk_hal_camera CAM_CAL_DRV2_device:chr_file rw_file_perms;
+allow mtk_hal_camera ion_device:chr_file rw_file_perms;
+allow mtk_hal_camera sw_sync_device:chr_file rw_file_perms;
+allow mtk_hal_camera MTK_SMI_device:chr_file r_file_perms;
+allow mtk_hal_camera fuse:dir { search read write };
+allow mtk_hal_camera fuse:file rw_file_perms;
+allow mtk_hal_camera block_device:dir { write search };
+allow mtk_hal_camera nvram_data_file:dir { search add_name write create};
+allow mtk_hal_camera nvram_data_file:file { write getattr setattr read create open };
+allow mtk_hal_camera nvram_device:chr_file rw_file_perms;
+allow mtk_hal_camera self:netlink_kobject_uevent_socket { create setopt bind };
+allow mtk_hal_camera sdcard_type:dir { write add_name create };
+allow mtk_hal_camera sdcard_type:file { append create getattr };
+allow mtk_hal_camera mtkcam_prop:file { open read getattr };
+allow mtk_hal_camera shell:unix_stream_socket { read write };
+allow mtk_hal_camera shell:fifo_file write;
+allow mtk_hal_camera dumpstate:binder { call };
+allow mtk_hal_camera dumpstate:unix_stream_socket { read write };
+allow mtk_hal_camera dumpstate:fd { use };
+allow mtk_hal_camera dumpstate:fifo_file write;
+allow mtk_hal_camera aee_exp_vendor_file:dir { w_dir_perms };
+allow mtk_hal_camera aee_exp_vendor_file:file { create_file_perms };
+allow mtk_hal_camera self:process { ptrace };
+allow mtk_hal_camera self:capability { setuid ipc_lock sys_nice };
+allow mtk_hal_camera sysfs_wake_lock:file rw_file_perms;
+allow mtk_hal_camera nvdata_file:dir { write search add_name };
+allow mtk_hal_camera nvdata_file:file { read write getattr setattr open create };
+allow mtk_hal_camera proc_meminfo:file { read getattr open };
+allow mtk_hal_camera sysfs_lowmemorykiller:file { read open };
+allow mtk_hal_camera proc_mtkcooler:dir search;
+allow mtk_hal_camera proc_mtktz:dir search;
+allow mtk_hal_camera proc_thermal:dir search;
+allow mtk_hal_camera thermal_manager_data_file:file create_file_perms;
+allow mtk_hal_camera thermal_manager_data_file:dir { rw_dir_perms setattr };
+allow mtk_hal_camera untrusted_app:dir search;
+allow mtk_hal_camera offloadservice_device:chr_file rw_file_perms;
+allow mtk_hal_camera storage_file:lnk_file {read write};
+allow mtk_hal_camera mnt_user_file:dir {write read search};
+allow mtk_hal_camera mnt_user_file:lnk_file {read write};
+allow mtk_hal_camera surfaceflinger:fifo_file {read write};
+allow mtk_hal_camera nvcfg_file:dir create_dir_perms;
+allow mtk_hal_camera nvcfg_file:file create_file_perms;
+allow mtk_hal_camera system_server:unix_stream_socket { read write };
+allow mtk_hal_camera tmpfs:dir search;
+allow mtk_hal_camera system_file:dir { read open };
+allow mtk_hal_camera gpu_device:dir search;
+allow mtk_hal_camera gpu_device:chr_file rw_file_perms;
+allow mtk_hal_camera proc_ged:file rw_file_perms;
+allowxperm mtk_hal_camera proc_ged:file ioctl { proc_ged_ioctls };
+allow mtk_hal_camera system_data_file:lnk_file read;
+allow mtk_hal_camera debugfs_tracing:file { write open };
+allow mtk_hal_camera debugfs_ion:dir search;
+allow mtk_hal_camera hal_graphics_composer_default:fd use;
+allow mtk_hal_camera property_socket:sock_file write;
+allow mtk_hal_camera mtk_cmdq_device:chr_file { read ioctl open };
+allow mtk_hal_camera mtk_mdp_device:chr_file rw_file_perms;
+allow mtk_hal_camera sysfs_batteryinfo:dir search;
+allow mtk_hal_camera sysfs_batteryinfo:file { getattr open read };
+allow mtk_hal_camera mtk_thermal_config_prop:property_service set;
+allow mtk_hal_camera graphics_device:chr_file { read write ioctl open };
+allow mtk_hal_camera graphics_device:dir search;
+allow mtk_hal_camera cct_data_file:dir create_dir_perms;
+allow mtk_hal_camera cct_data_file:file create_file_perms;
+allow mtk_hal_camera cct_data_file:fifo_file create_file_perms;
+allow mtk_hal_camera sysfs_boot_mode:file { read open };
+allow mtk_hal_camera mnt_vendor_file:dir create_dir_perms;
+allow mtk_hal_camera mnt_vendor_file:fifo_file create_file_perms;
+userdebug_or_eng(`
+allow mtk_hal_camera aee_aedv:unix_stream_socket connectto;
+')
+allow mtk_hal_camera mediatek_prop:property_service set;
+allow mtk_hal_camera nvram_data_file:dir search;
+allow mtk_hal_camera nvram_data_file:file rw_file_perms;
+allow mtk_hal_camera nvram_data_file:lnk_file read;
+allow mtk_hal_camera nvdata_file:lnk_file read;
+allow mtk_hal_camera nvdata_file:dir create_dir_perms;
+allow mtk_hal_camera nvdata_file:file { read write getattr setattr open create };
+allow mtk_hal_camera nvcfg_file:lnk_file read;
+allow mtk_hal_camera nvcfg_file:dir create_dir_perms;
+allow mtk_hal_camera nvcfg_file:file { read write getattr setattr open create };
+allow mtk_hal_camera mnt_vendor_file:dir search;
+allow mtk_hal_camera mnt_vendor_file:file create_file_perms;
+allow mtk_hal_camera gz_device:chr_file rw_file_perms;
+allow mtk_hal_camera aee_dipdebug_vendor_file:dir rw_dir_perms;
+allow mtk_hal_camera aee_dipdebug_vendor_file:file { create_file_perms };
+allow mtk_hal_camera proc_isp_p2:dir search;
+allow mtk_hal_camera proc_isp_p2:file {create_file_perms};
+allow mtk_hal_camera system_data_file:dir { getattr };
+allow mtk_hal_camera sysfs_dt_firmware_android:dir search;
+allow mtk_hal_camera proc_m4u:file r_file_perms;
+allowxperm mtk_hal_camera proc_m4u:file ioctl{
+MTK_M4U_T_ALLOC_MVA
+MTK_M4U_T_DEALLOC_MVA
+MTK_M4U_T_CONFIG_PORT
+MTK_M4U_T_DMA_OP
+MTK_M4U_T_SEC_INIT
+};
+allow mtk_hal_camera mtk_hal_camera:unix_stream_socket { ioctl };
+allowxperm mtk_hal_camera mtk_hal_camera:unix_stream_socket ioctl IIOCNETAIF;
+hal_client_domain(mtk_hal_camera, hal_pq)
+hal_client_domain(mtk_hal_camera, hal_allocator)
+binder_call(mtk_hal_camera, system_server)
+set_prop(mtk_hal_camera, vendor_logmuch_prop)
+allow mtk_hal_camera proc_thermal:file { read write getattr open };
+allow mtk_hal_camera proc_mtktz:file { read write open};
+allow mtk_hal_camera mtk_thermal_config_prop:file { read getattr open };
+allow mtk_hal_camera init:unix_stream_socket connectto;
+allow mtk_hal_camera proc_mtkcooler:file { read write open };
+binder_call(mtk_hal_camera, mtk_advcamserver)
+allow mtk_hal_camera Vcodec_device:chr_file { read write open ioctl };
+get_prop(mtk_hal_camera, mtk_em_video_log_vdec_prop)
+allow mtk_hal_camera sdcardfs:dir { create_dir_perms };
+allow mtk_hal_camera sdcardfs:file { create_file_perms };
+allow mtk_hal_camera seninf_device:chr_file rw_file_perms;
+allow mtk_hal_camera cct_data_file:dir create_dir_perms;
+allow mtk_hal_camera cct_data_file:file create_file_perms;
+allow mtk_hal_camera cct_data_file:fifo_file create_file_perms;
+allow mtk_hal_camera nvram_data_file:dir search;
+allow mtk_hal_camera nvram_data_file:file rw_file_perms;
+allow mtk_hal_camera nvram_data_file:lnk_file read;
+allow mtk_hal_camera nvdata_file:lnk_file read;
+allow mtk_hal_camera nvdata_file:dir create_dir_perms;
+allow mtk_hal_camera nvdata_file:file { read write getattr setattr open create };
+allow mtk_hal_camera nvcfg_file:lnk_file read;
+allow mtk_hal_camera nvcfg_file:dir create_dir_perms;
+allow mtk_hal_camera nvcfg_file:file { read write getattr setattr open create };
+allow mtk_hal_camera mnt_vendor_file:dir search;
+allow mtk_hal_camera mnt_vendor_file:file create_file_perms;
+allow mtk_hal_camera mobicore_user_device:chr_file rw_file_perms;
+allow mtk_hal_camera proc_secmem:file { read write open };
+allow mtk_hal_camera sysfs_boot_mode:file { read open };
+allow mtk_hal_camera vendor_data_file:dir create_dir_perms;
+allow mtk_hal_camera vendor_data_file:file create_file_perms;
+set_prop(mtk_hal_camera, mtk_camera_prop)
+allow mtk_hal_camera teei_client_device:chr_file rw_file_perms;
+allow mtk_hal_camera mdla_device:chr_file rw_file_perms;
+allow mtk_hal_camera vendor_camera_dump_file:dir create_dir_perms;
+allow mtk_hal_camera vendor_camera_dump_file:file create_file_perms;
+allow mtk_hal_camera vendor_shading_file:dir create_dir_perms;
+allow mtk_hal_camera vendor_shading_file:file create_file_perms;

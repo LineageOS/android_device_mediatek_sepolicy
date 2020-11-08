@@ -1,0 +1,62 @@
+wakelock_use(rild)
+allow rild kernel:system module_request;
+allow rild self:capability { setuid net_admin net_raw };
+allow rild cgroup:dir create_dir_perms;
+auditallow rild net_radio_prop:property_service set;
+auditallow rild system_radio_prop:property_service set;
+set_prop(rild, ril_active_md_prop)
+set_prop(rild, ril_cdma_report_prop)
+set_prop(rild, ril_mux_report_case_prop)
+set_prop(rild, ctl_muxreport-daemon_prop)
+wakelock_use(rild)
+allow rild efs_file:dir create_dir_perms;
+allow rild efs_file:file create_file_perms;
+allow rild bluetooth_efs_file:file r_file_perms;
+allow rild bluetooth_efs_file:dir r_dir_perms;
+allow rild sdcardfs:dir r_dir_perms;
+allow rild proc_net:file w_file_perms;
+allow rild self:netlink_route_socket nlmsg_write;
+allow rild radio_device:chr_file rw_file_perms;
+allow rild radio_device:blk_file r_file_perms;
+allow rild mtd_device:dir search;
+allow rild tty_device:chr_file rw_file_perms;
+allow rild eemcs_device:chr_file { rw_file_perms };
+allow rild devmap_device:chr_file { r_file_perms };
+allow rild devpts:chr_file { rw_file_perms };
+allow rild ccci_device:chr_file { rw_file_perms };
+allow rild misc_device:chr_file { rw_file_perms };
+allow rild proc_lk_env:file rw_file_perms;
+allow rild sysfs_vcorefs_pwrctrl:file { w_file_perms };
+allow rild para_block_device:blk_file { rw_file_perms };
+allow rild block_device:dir search;
+allow rild platform_app:fd use;
+allow rild radio:fd use;
+allow rild mal_mfi_socket:sock_file { w_file_perms };
+allow rild sysfs_ccci:dir search;
+allow rild sysfs_ccci:file r_file_perms;
+add_hwservice(hal_telephony_server, mtk_hal_rild_hwservice)
+allow hal_telephony_client mtk_hal_rild_hwservice:hwservice_manager find;
+vndbinder_use(rild)
+set_prop(rild, mtk_telephony_sensitive_prop)
+allow rild mtk_agpsd:unix_stream_socket connectto;
+allow rild mtk_net_ipv6_prop:property_service set;
+allow rild sysfs:file open;
+allow rild sysfs:file read;
+allow rild vendor_shell_exec:file {execute_no_trans};
+allow rild vendor_toolbox_exec:file {execute_no_trans};
+get_prop(rild, tel_switch_prop)
+set_prop(rild, vendor_radio_prop)
+set_prop(rild, vendor_ril_ipo_prop)
+set_prop(rild, mtk_cxp_vendor_prop)
+allow rild mnt_vendor_file:dir search;
+allow rild mnt_vendor_file:file create_file_perms;
+allow rild nvdata_file:dir create_dir_perms;
+allow rild nvdata_file:file create_file_perms;
+allow rild mtk_hal_secure_element:binder call;
+set_prop(rild, mtk_ss_vendor_prop)
+set_prop(rild,powerctl_prop);
+allow rild proc_cmdline:file r_file_perms;
+allow rild self:netlink_netfilter_socket { create_socket_perms_no_ioctl };
+allow rild proc_aed_reboot_reason:file rw_file_perms;
+get_prop(rild, mtk_wfc_serv_prop)
+set_prop(rild, gsm0710muxd_prop)

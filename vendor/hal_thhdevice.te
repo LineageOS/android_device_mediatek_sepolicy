@@ -1,0 +1,17 @@
+type hal_thh_default, domain;
+hal_server_domain(hal_thh_default, hal_thh)
+type hal_thh_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_thh_default)
+add_hwservice(hal_thh_server, hal_thh_hwservice)
+allow hal_thh_client hal_thh_hwservice:hwservice_manager find;
+hwbinder_use(hal_thh_default);
+binder_call(hal_thh_client, hal_thh_server)
+hal_client_domain(platform_app, hal_thh)
+hal_client_domain(hal_thh_default, hal_capi)
+hal_client_domain(hal_thh_default, hal_allocator)
+allow hal_thh_default teei_client_device:chr_file { create setattr unlink rw_file_perms };
+allow hal_thh_default teei_data_file:dir create_dir_perms;
+allow hal_thh_default teei_data_file:file rw_file_perms;
+allow hal_thh_default teei_data_file:file create_file_perms;
+allow hal_thh_default ut_keymaster_device:chr_file { read write open ioctl};
+allow hal_thh_default soter_teei_prop:property_service set;

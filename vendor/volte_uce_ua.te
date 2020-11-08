@@ -1,0 +1,12 @@
+type volte_uce_ua, domain, mtkimsapdomain;
+type volte_uce_ua_exec, exec_type, file_type, vendor_file_type;
+type volte_uce_socket, file_type;
+init_daemon_domain(volte_uce_ua)
+hwbinder_use(volte_uce_ua)
+hal_server_domain(volte_uce_ua, hal_presence)
+add_hwservice(hal_presence_server, volte_uce_ua_hwservice)
+binder_call(volte_uce_ua, system_app)
+allow volte_uce_ua hwservicemanager_prop:file { read getattr open };
+allow volte_uce_ua debugfs_tracing:file { write open };
+allow volte_uce_ua rcs_volte_stack_socket:sock_file { open getattr read write append };
+allow volte_uce_ua rcs_volte_stack:unix_stream_socket { read getattr connectto };

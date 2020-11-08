@@ -1,0 +1,187 @@
+type aee_aedv, domain;
+type aee_aedv_exec, exec_type, file_type, vendor_file_type;
+typeattribute aee_aedv mlstrustedsubject;
+
+init_daemon_domain(aee_aedv)
+
+hal_client_domain(aee_aedv, hal_camera)
+
+allow aee_aedv aed_device:chr_file rw_file_perms;
+allow aee_aedv expdb_device:chr_file rw_file_perms;
+allow aee_aedv expdb_block_device:blk_file rw_file_perms;
+allow aee_aedv bootdevice_block_device:blk_file rw_file_perms;
+allow aee_aedv etb_device:chr_file rw_file_perms;
+allow aee_aedv block_device:dir search;
+allow aee_aedv RT_Monitor_device:chr_file r_file_perms;
+allow aee_aedv aee_exp_vendor_file:dir create_dir_perms;
+allow aee_aedv aee_exp_vendor_file:file create_file_perms;
+allow aee_aedv aee_dumpsys_vendor_file:dir create_dir_perms;
+allow aee_aedv aee_dumpsys_vendor_file:file create_file_perms;
+allow aee_aedv aee_core_vendor_file:dir create_dir_perms;
+allow aee_aedv aee_core_vendor_file:file create_file_perms;
+allow aee_aedv vendor_tmpfs_log_file:dir create_dir_perms;
+allow aee_aedv vendor_tmpfs_log_file:file create_file_perms;
+allow aee_aedv domain:process { sigkill getattr getsched};
+allow aee_aedv domain:lnk_file getattr;
+allow aee_aedv usermodehelper:file r_file_perms;
+
+userdebug_or_eng(`allow aee_aedv self:capability sys_admin;')
+
+set_prop(aee_aedv, persist_mtk_aeev_prop);
+set_prop(aee_aedv, persist_aeev_prop);
+set_prop(aee_aedv, debug_mtk_aeev_prop);
+
+allow aee_aedv mnt_user_file:dir search;
+allow aee_aedv mnt_user_file:lnk_file read;
+allow aee_aedv storage_file:dir search;
+allow aee_aedv storage_file:lnk_file read;
+
+userdebug_or_eng(`
+  allow aee_aedv su:dir {search read open };
+  allow aee_aedv su:file { read getattr open };
+')
+
+allow aee_aedv self:capability { fowner chown fsetid sys_nice sys_resource net_admin sys_module};
+allow aee_aedv dumpstate:unix_stream_socket { read write ioctl };
+allow aee_aedv dumpstate:dir search;
+allow aee_aedv dumpstate:file r_file_perms;
+allow aee_aedv proc:file rw_file_perms;
+allow aee_aedv logdr_socket:sock_file write;
+allow aee_aedv logd:unix_stream_socket connectto;
+allow aee_aedv sysfs_vibrator:file w_file_perms;
+allow aee_aedv proc_lk_env:file rw_file_perms;
+allow aee_aedv domain:dir r_dir_perms;
+allow aee_aedv domain:{ file lnk_file } r_file_perms;
+allow aee_aedv crash_dump:dir search;
+allow aee_aedv crash_dump:file r_file_perms;
+allow aee_aedv vendor_file:file execute_no_trans;
+allow aee_aedv debugfs_binder:dir { read open };
+allow aee_aedv debugfs_binder:file { read open };
+allow aee_aedv debugfs_blockio:file { read open };
+allow aee_aedv debugfs_fb:dir search;
+allow aee_aedv debugfs_fb:file { read open };
+allow aee_aedv debugfs_fuseio:dir search;
+allow aee_aedv debugfs_fuseio:file { read open };
+allow aee_aedv debugfs_ged:dir search;
+allow aee_aedv debugfs_ged:file { read open };
+allow aee_aedv debugfs_rcu:dir search;
+allow aee_aedv debugfs_shrinker_debug:file { read open };
+allow aee_aedv debugfs_wakeup_sources:file { read open };
+allow aee_aedv debugfs_dmlog_debug:file { read open };
+allow aee_aedv debugfs_page_owner_slim_debug:file { read open };
+allow aee_aedv debugfs_ion_mm_heap:dir search;
+allow aee_aedv debugfs_ion_mm_heap:file r_file_perms;
+allow aee_aedv debugfs_ion_mm_heap:lnk_file read;
+allow aee_aedv debugfs_cpuhvfs:dir search;
+allow aee_aedv debugfs_cpuhvfs:file { read open };
+allow aee_aedv debugfs_emi_mbw_buf:file { read open };
+allow aee_aedv debugfs_vpu_device_dbg:file { read open };
+allow aee_aedv proc_interrupts:file read;
+allow aee_aedv debugfs_tracing:file rw_file_perms;
+allow aee_aedv kmsg_device:chr_file read;
+allow aee_aedv platform_app:dir r_dir_perms;
+allow aee_aedv platform_app:file r_file_perms;
+allow aee_aedv untrusted_app_25:dir getattr;
+allow aee_aedv untrusted_app:dir getattr;
+allow aee_aedv priv_app:dir getattr;
+allow aee_aedv proc_interrupts:file r_file_perms;
+allow aee_aedv proc_net:file read;
+allow aee_aedv proc_zoneinfo:file read;
+allow aee_aedv sysfs_leds:dir search;
+allow aee_aedv sysfs_leds:file r_file_perms;
+allow aee_aedv sysfs_ccci:dir search;
+allow aee_aedv sysfs_ccci:file r_file_perms;
+allow aee_aedv vendor_toolbox_exec:file rx_file_perms;
+allow aee_aedv kmsg_device:chr_file r_file_perms;
+allow aee_aedv kernel:system syslog_read;
+allow aee_aedv proc_meminfo:file r_file_perms;
+allow aee_aedv proc_net:file r_file_perms;
+allow aee_aedv proc_zoneinfo:file r_file_perms;
+allow aee_aedv rootfs:file r_file_perms;
+allow aee_aedv debugfs_dynamic_debug:dir search;
+allow aee_aedv debugfs_dynamic_debug:file r_file_perms;
+allow aee_aedv sysfs:file r_file_perms;
+allow aee_aedv sysfs_mrdump_lbaooo:file w_file_perms;
+
+hwbinder_use(aee_aedv)
+
+binder_call(aee_aedv, mtk_hal_camera)
+
+allow aee_aedv hal_camera_hwservice:hwservice_manager { find };
+allow aee_aedv selinuxfs:file r_file_perms;
+allow aee_aedv sysfs_dt_firmware_android:dir search;
+allow aee_aedv sysfs_dt_firmware_android:file r_file_perms;
+allow aee_aedv kernel:system module_request;
+allow aee_aedv metadata_file:dir search;
+allow aee_aedv self:capability linux_immutable;
+allow aee_aedv userdata_block_device:blk_file { read write open };
+allow aee_aedv para_block_device:blk_file rw_file_perms;
+allow aee_aedv mrdump_device:blk_file rw_file_perms;
+
+allowxperm aee_aedv aee_dumpsys_vendor_file:file ioctl {
+  FS_IOC_GETFLAGS
+  FS_IOC_SETFLAGS
+  F2FS_IOC_GET_PIN_FILE
+  F2FS_IOC_SET_PIN_FILE
+  FS_IOC_FIEMAP
+};
+
+allow aee_aedv sysfs_lowmemorykiller:dir search;
+allow aee_aedv sysfs_lowmemorykiller:file r_file_perms;
+allow aee_aedv sysfs_scp:dir r_dir_perms;
+allow aee_aedv sysfs_scp:file r_file_perms;
+allow aee_aedv sysfs_adsp:dir r_dir_perms;
+allow aee_aedv sysfs_adsp:file r_file_perms;
+allow aee_aedv self:capability { fsetid sys_nice chown fowner kill };
+allow aee_aedv proc_buddyinfo:file r_file_perms;
+allow aee_aedv proc_cmdline:file r_file_perms;
+allow aee_aedv proc_slabinfo:file r_file_perms;
+allow aee_aedv proc_stat:file r_file_perms;
+allow aee_aedv proc_version:file r_file_perms;
+allow aee_aedv proc_vmallocinfo:file r_file_perms;
+allow aee_aedv proc_vmstat:file r_file_perms;
+allow aee_aedv proc_cpu_alignment:file w_file_perms;
+allow aee_aedv proc_gpulog:file r_file_perms;
+allow aee_aedv proc_chip:file r_file_perms;
+allow aee_aedv proc_sched_debug:file r_file_perms;
+allow aee_aedv proc_atf_log:dir search;
+allow aee_aedv proc_last_kmsg:file r_file_perms;
+allow aee_aedv sysfs_vibrator_setting:dir search;
+allow aee_aedv sysfs_vibrator_setting:file w_file_perms;
+allow aee_aedv sysfs_vibrator:dir search;
+allow aee_aedv debugfs_rcu:file r_file_perms;
+allow aee_aedv proc_ufs_debug:file rw_file_perms;
+allow aee_aedv proc_msdc_debug:file r_file_perms;
+allow aee_aedv proc_pidmap:file r_file_perms;
+allow aee_aedv sysfs_vcore_debug:file r_file_perms;
+allow aee_aedv sysfs_boot_mode:file r_file_perms;
+
+userdebug_or_eng(`
+  allow aee_aedv debugfs_tracing_debug:file { rw_file_perms };
+')
+
+allow aee_aedv proc_slabtrace:file r_file_perms;
+allow aee_aedv proc_cmdq_debug:file r_file_perms;
+
+get_prop(aee_aedv, vendor_default_prop)
+get_prop(aee_aedv, hwservicemanager_prop)
+
+allow aee_aedv aee_dipdebug_vendor_file:dir r_dir_perms;
+allow aee_aedv aee_dipdebug_vendor_file:file r_file_perms;
+allow aee_aedv proc_isp_p2:dir r_dir_perms;
+allow aee_aedv proc_isp_p2:file r_file_perms;
+allow aee_aedv connsyslog_data_vendor_file:file r_file_perms;
+allow aee_aedv connsyslog_data_vendor_file:dir r_dir_perms;
+allow aee_aedv vendor_file_type:file r_file_perms;
+allow aee_aedv debugfs_smi_mon:file r_file_perms;
+allow aee_aedv proc_isp_p2_kedump:file r_file_perms;
+allow aee_aedv debugfs_vpu_memory:file r_file_perms;
+allow aee_aedv proc_dbg_repo:file r_file_perms;
+allow aee_aedv proc_pl_lk:file r_file_perms;
+allow aee_aedv proc_aed_reboot_reason:file r_file_perms;
+allow aee_aedv proc_drop_caches:file rw_file_perms;
+
+userdebug_or_eng(`
+  allow aee_aedv coredump_file:dir { remove_name };
+  allow aee_aedv coredump_file:file { unlink };
+')

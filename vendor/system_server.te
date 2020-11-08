@@ -1,0 +1,152 @@
+allow system_server touch_device:chr_file rw_file_perms;
+allow system_server stpant_device:chr_file rw_file_perms;
+allow system_server devmap_device:chr_file r_file_perms;
+allow system_server irtx_device:chr_file rw_file_perms;
+allow system_server qemu_pipe_device:chr_file rw_file_perms;
+allow system_server wmtWifi_device:chr_file w_file_perms;
+allow system_server proc_bootprof:file rw_file_perms;
+allow system_server aee_core_data_file:dir r_dir_perms;
+allow system_server debugfs:dir r_dir_perms;
+allow system_server zygote:binder impersonate;
+allow system_server ctl_bootanim_prop:property_service set;
+allow system_server aee_dumpsys_data_file:file w_file_perms;
+allow system_server aee_exp_data_file:file w_file_perms;
+allow system_server zygote:unix_stream_socket { getopt getattr };
+allow system_server debugfs_wakeup_sources:file r_file_perms;
+allow system_server sysfs_dcm:file rw_file_perms;
+allow system_server log_tag_prop:property_service set;
+allow system_server surfaceflinger:fifo_file rw_file_perms;
+allow system_server gpu_device:dir search;
+allow system_server debugfs_gpu_img:dir search;
+allow system_server sw_sync_device:chr_file { read write getattr open ioctl };
+allow system_server ttyMT_device:chr_file rw_file_perms;
+allow system_server ttyS_device:chr_file rw_file_perms;
+allow system_server proc_mtktz:dir search;
+allow system_server proc_mtktz:file r_file_perms;
+allow system_server mtk_hal_audio:process { getsched setsched };
+binder_call(system_server, mtk_hal_bluetooth)
+binder_call(system_server, mtk_hal_sensors)
+binder_call(system_server, mtk_hal_light)
+hal_client_domain(system_server, hal_gnss)
+allow system_server vendor_framework_file:dir r_file_perms;
+allow system_server vendor_framework_file:file getattr;
+allow system_server wifi_prop:file { read getattr open };
+allow system_server aee_aed:unix_stream_socket connectto;
+get_prop(system_server, mtk_telephony_sensitive_prop)
+allow system_server debugfs_wakeup_sources:file { read getattr open };
+binder_call(system_server, mtk_hal_imsa)
+binder_call(system_server, mtk_hal_camera)
+binder_call(system_server, mnld)
+allow system_server netdiag:fifo_file write;
+allow system_server dhcp_data_file:dir search;
+allow system_server dhcp_data_file:dir rw_dir_perms;
+allow system_server dhcp_data_file:file create_file_perms;
+hal_client_domain(system_server, mtk_hal_lbs)
+allow system_server mtk_thermal_config_prop:file { getattr open read };
+allow system_server mtk_hal_power_hwservice:hwservice_manager find;
+allow system_server proc_perfmgr:dir {read search};
+allow system_server proc_perfmgr:file {open read ioctl};
+allowxperm system_server proc_perfmgr:file ioctl {
+  PERFMGR_FPSGO_QUEUE
+  PERFMGR_FPSGO_DEQUEUE
+  PERFMGR_FPSGO_QUEUE_CONNECT
+  PERFMGR_FPSGO_BQID
+};
+binder_call(system_server, mtk_hal_wifi)
+get_prop(system_server, persist_mtk_aee_prop);
+allow system_server alarm_device:chr_file rw_file_perms;
+allow system_server proc_ged:file rw_file_perms;
+allowxperm system_server proc_ged:file ioctl { proc_ged_ioctls };
+get_prop(system_server, vendor_default_prop)
+allow system_server mtk_hal_hdmi_hwservice:hwservice_manager find;
+allow system_server mtk_hal_hdmi:binder call;
+allow system_server proc_battery_cmd:dir search;
+get_prop(system_server, debug_mtk_aee_prop)
+get_prop(system_server, debug_bq_dump_prop)
+get_prop(system_server, mtk_telecom_vibrate)
+allow system_server proc_cmdq_debug:file getattr;
+allow system_server proc_freqhop:file getattr;
+allow system_server proc_last_kmsg:file r_file_perms;
+allow system_server proc_cm_mgr:dir search;
+allow system_server proc_isp_p2:dir search;
+allow system_server proc_thermal:dir search;
+allow system_server proc_atf_log:dir search;
+allow system_server proc_cpufreq:dir search;
+allow system_server proc_mtkcooler:dir search;
+allow system_server proc_ppm:dir search;
+allow system_server proc_wlan_status:file getattr;
+allow system_server sysfs_pages_shared:file r_file_perms;
+allow system_server sysfs_pages_sharing:file r_file_perms;
+allow system_server sysfs_pages_unshared:file r_file_perms;
+allow system_server sysfs_pages_volatile:file r_file_perms;
+allow system_server sysfs_boot_mode:file r_file_perms;
+allow system_server self:capability sys_module;
+dontaudit system_server sdcardfs:file r_file_perms;
+allow system_server mtk_hal_camera:process sigkill;
+allow system_server kernel:system syslog_read;
+allow system_server proc_chip:dir search;
+allow system_server zygote:process setsched;
+allow system_server sf_rtt_file:dir rmdir;
+allow system_server storage_stub_file:dir getattr;
+allow system_server netd:process setsched;
+allow system_server webview_zygote:process setsched;
+allow system_server sysfs_hdmi_audio_extcon:file r_file_perms;
+allow system_server sf_rtt_file:dir relabelto;
+allow system_server sf_rtt_file:dir r_dir_perms;
+allow system_server sf_rtt_file:file r_file_perms;
+allow system_server proc_secmem:file rw_file_perms;
+allow system_server RT_Monitor_device:chr_file r_file_perms;
+allow system_server teei_fp_device:chr_file rw_file_perms;
+allow system_server teei_client_device:chr_file r_file_perms;
+allow system_server dm_agent_binder_service:service_manager find;
+allow system_server dri_device:chr_file { read write open ioctl };
+allow system_server gas_srv_service:service_manager find;
+allow system_server mtk_telecom_service:service_manager add;
+hal_client_domain(system_server, hal_pq)
+hal_client_domain(system_server, hal_wfo)
+allow system_server mtk_radio_service:service_manager find;
+allow system_server debugfs_ion:dir search;
+hal_client_domain(system_server, hal_mtkcodecservice)
+binder_call(system_server, mtk_hal_camera)
+allow system_server mtk_anrmanager_service:service_manager add;
+allow system_server debugfs_binder:file { read getattr open };
+allow system_server netd:process signal;
+allow system_server media_wfd_prop:property_service set;
+allow system_server wifi_prop:property_service set;
+set_prop(system_server, logmuch_prop);
+allow system_server mtk_fullscreen_switch_service:service_manager add;
+hal_client_domain(system_server,hal_dfps)
+allow system_server audioserver:file write;
+allow system_server mtk_hal_netdagent_hwservice:hwservice_manager find;
+allow system_server netdagent:binder call;
+allow system_server mobicore_vendor_file:dir { read getattr open };
+set_prop(system_server, mtk_amslog_prop)
+set_prop(system_server, mtk_amsaal_prop)
+allow system_server fm_hidl_service:binder {call transfer};
+allow fm_hidl_service system_server:binder {call transfer};
+allow system_server mtk_hal_fm_hwservice:hwservice_manager find;
+binder_call(system_server, mtk_hal_fm)
+get_prop(system_server, persist_vendor_vzw_device_type)
+get_prop(system_server, mtk_rtt_prop)
+allow system_server mtk_data_shaping_service:service_manager add;
+get_prop(system_server, mtk_em_net_auto_tethering_prop)
+get_prop(system_server, mtk_em_tel_log_prop)
+get_prop(system_server, mtk_bgdata_disabled)
+binder_call(system_server, teed_app)
+binder_call(system_server, teeregistryd_app)
+allow system_server tee_service:service_manager find;
+allow system_server teeregistry_service:service_manager find;
+allow system_server mtk_duraspeed_service:service_manager add;
+allow system_server proc_cpu_loading:file rw_file_perms;
+allow system_server debugfs_shrinker_debug:file r_file_perms;
+allow system_server debugfs_ion:dir r_dir_perms;
+allow system_server debugfs_ion:file r_file_perms;
+userdebug_or_eng('
+allow system_server debugfs_tracing_debug:file r_file_perms;
+')
+allow system_server proc_low_memory_hit:file rw_file_perms;
+set_prop(system_server, mtk_duraspeed_drop_caches)
+binder_call(system_server, mtk_hal_omadm)
+hal_client_domain(system_server, hal_omadm)
+get_prop(system_server, mtk_heavy_loading_prop)
+hal_client_domain(system_server, hal_nwk_opt)

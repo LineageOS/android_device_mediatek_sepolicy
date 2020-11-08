@@ -1,0 +1,30 @@
+type mtk_hal_mms, domain;
+type mtk_hal_mms_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(mtk_hal_mms)
+hwbinder_use(mtk_hal_mms);
+hal_server_domain(mtk_hal_mms, hal_mms)
+typeattribute mtk_hal_mms untrusted_app_visible_halserver_violators;
+add_hwservice(hal_mms_server, mtk_hal_mms_hwservice)
+allow mtk_hal_mms graphics_device:chr_file { read write open ioctl };
+allow mtk_hal_mms ion_device:chr_file { read open ioctl };
+allow mtk_hal_mms mtk_cmdq_device:chr_file { read open ioctl };
+allow mtk_hal_mms mtk_mdp_device:chr_file rw_file_perms;
+allow mtk_hal_mms sw_sync_device:chr_file rw_file_perms;
+allow mtk_hal_mms proc:file r_file_perms;
+hal_client_domain(mtk_hal_mms, hal_allocator)
+hal_client_domain(mtk_hal_mms, hal_graphics_allocator);
+hal_client_domain(mtk_hal_mms, hal_pq)
+allow mtk_hal_mms hal_graphics_allocator_default:fd use;
+allow mtk_hal_mms debugfs_ion:dir search;
+allow mtk_hal_mms merged_hal_service:fd use;
+allow mtk_hal_mms Vcodec_device:chr_file rw_file_perms;
+allow mtk_hal_mms proc_mtk_jpeg:file r_file_perms;
+allowxperm mtk_hal_mms proc_mtk_jpeg:file ioctl {
+     JPG_BRIDGE_ENC_IO_INIT
+     JPG_BRIDGE_ENC_IO_CONFIG
+     JPG_BRIDGE_ENC_IO_WAIT
+     JPG_BRIDGE_ENC_IO_DEINIT
+     JPG_BRIDGE_ENC_IO_START
+     };
+allow mtk_hal_mms platform_app:fd use;
+allow mtk_hal_mms system_app:fd use;

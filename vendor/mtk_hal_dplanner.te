@@ -1,0 +1,10 @@
+type mtk_hal_dplanner, domain;
+type mtk_hal_dplanner_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(mtk_hal_dplanner)
+hwbinder_use(mtk_hal_dplanner);
+hal_server_domain(mtk_hal_dplanner, hal_dplanner)
+add_hwservice(hal_dplanner, mtk_hal_dplanner_hwservice)
+allow mtk_hal_dplanner platform_app:binder { call transfer };
+domain_auto_trans(mtk_hal_dplanner, mtk_dconfig_exec, mtk_dconfig);
+allow mtk_hal_dplanner doe_vendor_data_file:dir create_dir_perms;
+allow mtk_hal_dplanner doe_vendor_data_file:file create_file_perms;

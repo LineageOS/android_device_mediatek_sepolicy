@@ -1,0 +1,4 @@
+type stflashtool, domain;
+type stflashtool_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(stflashtool);
+allow stflashtool st21nfc_device:chr_file { read write ioctl open };

@@ -1,0 +1,78 @@
+allow surfaceflinger sw_sync_device:chr_file { rw_file_perms };
+allow surfaceflinger debug_prop:property_service set;
+allow surfaceflinger proc_ged:file rw_file_perms;
+allowxperm surfaceflinger proc_ged:file ioctl { proc_ged_ioctls };
+allow surfaceflinger gpu_device:dir search;
+allow surfaceflinger proc_bootprof:file r_file_perms;
+allow surfaceflinger debugfs_ion:dir search;
+allow surfaceflinger mtk_cmdq_device:chr_file { read ioctl open };
+binder_use(surfaceflinger)
+binder_call(surfaceflinger, binderservicedomain)
+binder_call(surfaceflinger, appdomain)
+binder_call(surfaceflinger, mtkbootanimation)
+binder_service(surfaceflinger)
+allow surfaceflinger mtkbootanimation:dir search;
+allow surfaceflinger mtkbootanimation:file { read getattr open };
+allow surfaceflinger proc_perfmgr:dir {read search};
+allow surfaceflinger proc_perfmgr:file {open read ioctl};
+allowxperm surfaceflinger proc_perfmgr:file ioctl {
+  PERFMGR_FPSGO_QUEUE
+  PERFMGR_FPSGO_DEQUEUE
+  PERFMGR_FPSGO_QUEUE_CONNECT
+  PERFMGR_FPSGO_BQID
+  PERFMGR_FPSGO_VSYNC
+};
+get_prop(surfaceflinger, graphics_hwc_pid_prop)
+get_prop(surfaceflinger, graphics_hwc_latch_unsignaled_prop)
+allow surfaceflinger hal_graphics_composer_default:dir search;
+allow surfaceflinger hal_graphics_composer_default:lnk_file read;
+get_prop(surfaceflinger, debug_bq_dump_prop)
+allow surfaceflinger mdp_device:chr_file rw_file_perms;
+allow surfaceflinger mtk_mdp_device:chr_file rw_file_perms;
+get_prop(surfaceflinger, graphics_hwc_hdr_prop)
+allow surfaceflinger self:capability { net_admin sys_nice };
+allow surfaceflinger self:netlink_socket { read bind create };
+allow surfaceflinger debug_prop:property_service set;
+file_type_auto_trans(surfaceflinger, system_data_file, sf_bqdump_data_file);
+allow surfaceflinger anr_data_file:dir { write search create add_name };
+allow surfaceflinger anr_data_file:file { create write};
+allow surfaceflinger aee_exp_data_file:file write;
+allow surfaceflinger aee_dumpsys_data_file:file write;
+allow surfaceflinger RT_Monitor_device:chr_file { read ioctl open };
+allow surfaceflinger shell_exec:file rx_file_perms;
+allow surfaceflinger system_file:file x_file_perms;
+userdebug_or_eng(`
+allow surfaceflinger sf_bqdump_data_file:{dir file} {relabelto open create read write getattr };
+allow surfaceflinger sf_bqdump_data_file:dir {search add_name};
+')
+allow surfaceflinger sw_sync_device:chr_file { read write open ioctl getattr };
+allow surfaceflinger MTK_SMI_device:chr_file { read write open ioctl };
+allow surfaceflinger bootanim:dir search;
+allow surfaceflinger bootanim:file { read getattr open };
+allow surfaceflinger qemu_pipe_device:chr_file rw_file_perms;
+allow surfaceflinger proc_secmem:file { read write open ioctl };
+allow surfaceflinger anr_data_file:dir { relabelfrom read remove_name getattr };
+allow surfaceflinger anr_data_file:file { rename getattr unlink open append};
+allow surfaceflinger sf_rtt_file:dir { create search write add_name remove_name};
+allow surfaceflinger sf_rtt_file:file { open read write create rename append getattr unlink};
+allow surfaceflinger sf_rtt_file:dir {relabelto getattr};
+allow surfaceflinger aee_aed:process sigchld;
+allow surfaceflinger em_svr:dir search;
+allow surfaceflinger em_svr:file { read getattr open };
+not_full_treble(`
+    allow surfaceflinger mobicore:unix_stream_socket connectto;
+')
+allow surfaceflinger mobicore_user_device:chr_file { read write ioctl open };
+allow surfaceflinger proc_bootprof:file write;
+allow surfaceflinger mtk_perf_service:service_manager find;
+allow surfaceflinger debugfs:file getattr;
+allow surfaceflinger dri_device:chr_file { read write open ioctl };
+allow surfaceflinger toolbox_exec:file rx_file_perms;
+allow surfaceflinger debugfs_ged:file { open write read getattr};
+allow surfaceflinger debugfs_ged:dir { search };
+allow surfaceflinger fpspolicy-server_service:service_manager add;
+hal_client_domain(surfaceflinger, hal_pq)
+hal_client_domain(surfaceflinger, hal_allocator)
+hal_client_domain(surfaceflinger, hal_dfps)
+allow surfaceflinger mtk_dfrc_device:chr_file rw_file_perms;
+hal_client_domain(surfaceflinger, hal_gpu)

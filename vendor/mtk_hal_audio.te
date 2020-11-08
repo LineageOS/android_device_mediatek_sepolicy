@@ -1,0 +1,95 @@
+type mtk_hal_audio, domain;
+hal_server_domain(mtk_hal_audio, hal_audio)
+type mtk_hal_audio_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(mtk_hal_audio)
+hal_client_domain(mtk_hal_audio, hal_allocator)
+hwbinder_use(mtk_hal_audio)
+wakelock_use(mtk_hal_audio);
+allow mtk_hal_audio ion_device:chr_file r_file_perms;
+allow mtk_hal_audio system_file:dir { open read };
+r_dir_file(mtk_hal_audio, proc)
+allow mtk_hal_audio audio_device:dir r_dir_perms;
+allow mtk_hal_audio audio_device:chr_file rw_file_perms;
+neverallow mtk_hal_audio { file_type fs_type }:file execute_no_trans;
+neverallow mtk_hal_audio domain:{ tcp_socket udp_socket rawip_socket } *;
+allow mtk_hal_audio sdcard_type:dir { w_dir_perms create };
+allow mtk_hal_audio sdcard_type:file create;
+allow mtk_hal_audio nvram_data_file:dir w_dir_perms;
+allow mtk_hal_audio nvram_data_file:file create_file_perms;
+allow mtk_hal_audio nvram_data_file:lnk_file read;
+allow mtk_hal_audio nvdata_file:lnk_file read;
+allow mtk_hal_audio nvdata_file:dir w_dir_perms;
+allow mtk_hal_audio nvdata_file:file create_file_perms;
+allow mtk_hal_audio sdcard_type:dir remove_name;
+allow mtk_hal_audio sdcard_type:file unlink;
+allow mtk_hal_audio nvram_device:chr_file rw_file_perms;
+allow mtk_hal_audio self:netlink_kobject_uevent_socket { create setopt bind };
+allow mtk_hal_audio self:netlink_kobject_uevent_socket read;
+allow mtk_hal_audio bt_a2dp_stream_socket:sock_file write;
+allow mtk_hal_audio bt_int_adp_socket:sock_file write;
+allow mtk_hal_audio MtkCodecService:binder call;
+allow mtk_hal_audio ccci_device:chr_file rw_file_perms;
+allow mtk_hal_audio eemcs_device:chr_file rw_file_perms;
+allow mtk_hal_audio devmap_device:chr_file r_file_perms;
+allow mtk_hal_audio ebc_device:chr_file rw_file_perms;
+allow mtk_hal_audio nvram_device:blk_file rw_file_perms;
+allow mtk_hal_audio block_device:dir { write search };
+allow mtk_hal_audio fm_device:chr_file rw_file_perms;
+allow mtk_hal_audio sdcard_type:file append;
+allow mtk_hal_audio audiohal_prop:property_service set;
+allow mtk_hal_audio graphics_device:chr_file rw_file_perms;
+allow mtk_hal_audio smartpa_device:chr_file rw_file_perms;
+allow mtk_hal_audio sysfs_rt_param:file rw_file_perms;
+allow mtk_hal_audio sysfs_rt_calib:file rw_file_perms;
+allow mtk_hal_audio sysfs_rt_param:dir r_dir_perms;
+allow mtk_hal_audio sysfs_rt_calib:dir r_dir_perms;
+allow mtk_hal_audio uhid_device:chr_file rw_file_perms;
+allow mtk_hal_audio vow_device:chr_file rw_file_perms;
+allow mtk_hal_audio rpc_socket:sock_file write;
+allow mtk_hal_audio ttySDIO_device:chr_file rw_file_perms;
+allow mtk_hal_audio sysfs_lowmemorykiller:file { read open };
+allow mtk_hal_audio proc_mtkcooler:dir search;
+allow mtk_hal_audio proc_mtktz:dir search;
+allow mtk_hal_audio proc_thermal:dir search;
+allow mtk_hal_audio thermal_manager_data_file:file create_file_perms;
+allow mtk_hal_audio thermal_manager_data_file:dir { rw_dir_perms setattr };
+allow mtk_hal_audio radio:dir { search read };
+allow mtk_hal_audio radio:file r_file_perms;
+allow mtk_hal_audio untrusted_app:dir search;
+allow mtk_hal_audio offloadservice_device:chr_file rw_file_perms;
+allow mtk_hal_audio storage_file:dir search;
+allow mtk_hal_audio storage_file:lnk_file {read write};
+allow mtk_hal_audio mnt_user_file:dir {write read search};
+allow mtk_hal_audio mnt_user_file:lnk_file {read write};
+allow mtk_hal_audio sysfs_ccci:file r_file_perms;
+allow mtk_hal_audio sysfs_ccci:dir search;
+allow mtk_hal_audio tmpfs:dir search;
+allow mtk_hal_audio debugfs_binder:dir search;
+allow mtk_hal_audio kmsg_device:chr_file { open write };
+allow mtk_hal_audio property_socket:sock_file write;
+allow mtk_hal_audio fuse:file rw_file_perms;
+allow mtk_hal_audio init:unix_stream_socket connectto;
+binder_call(mtk_hal_audio,radio)
+allow mtk_hal_audio mtk_audiohal_data_file:dir create_dir_perms;
+allow mtk_hal_audio mtk_audiohal_data_file:file create_file_perms;
+allow mtk_hal_audio sdcard_type:file { create_file_perms };
+allow mtk_hal_audio proc_ged:file rw_file_perms;
+set_prop(mtk_hal_audio,hwservicemanager_prop);
+allow mtk_hal_audio storage_file:dir search;
+allow mtk_hal_audio fuse:dir read;
+allow mtk_hal_audio self:capability sys_nice;
+allow mtk_hal_audio debugfs_tracing:file { write open };
+allow mtk_hal_audio self:capability sys_nice;
+binder_call(mtk_hal_audio,audiocmdservice_atci);
+allow mtk_hal_audio mtk_hal_power_hwservice:hwservice_manager find;
+binder_call(mtk_hal_audio, mtk_hal_power)
+binder_call(mtk_hal_audio, merged_hal_service)
+allow mtk_hal_audio audio_ipi_device:chr_file { read write ioctl open };
+allow mtk_hal_audio audio_scp_device:chr_file r_file_perms;
+allow mtk_hal_audio mnt_vendor_file:dir search;
+allow mtk_hal_audio audioserver:fifo_file w_file_perms;
+allow mtk_hal_audio sysfs_boot_mode:file r_file_perms;
+allow mtk_hal_audio sysfs_dt_firmware_android:dir search;
+allow mtk_hal_audio adsp_device:file rw_file_perms;
+allow mtk_hal_audio adsp_device:chr_file rw_file_perms;
+allow mtk_hal_audio adsp_device:chr_file { rw_file_perms };

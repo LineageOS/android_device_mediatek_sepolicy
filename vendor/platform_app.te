@@ -1,0 +1,88 @@
+typeattribute platform_app mlstrustedsubject;
+hal_client_domain(platform_app, mtk_hal_lbs)
+allow platform_app fm_device:chr_file rw_file_perms;
+allow platform_app mobile_log_d:unix_stream_socket connectto;
+allow platform_app mdlogger:unix_stream_socket connectto;
+allow platform_app emdlogger:unix_stream_socket connectto;
+allow platform_app cmddumper:unix_stream_socket connectto;
+allow platform_app connsyslogger:unix_stream_socket connectto;
+unix_socket_connect(platform_app, netdiag, netdiag)
+allow platform_app bluetooth:unix_stream_socket connectto;
+allow platform_app ttySDIO_device:chr_file rw_file_perms;
+allow platform_app sdcard_type:file create_file_perms;
+allow platform_app sdcard_type:dir create_dir_perms;
+allow platform_app aee_exp_data_file:file r_file_perms;
+allow platform_app aee_exp_data_file:dir r_dir_perms;
+allow platform_app mdlog_data_file:file rw_file_perms;
+allow platform_app mdlog_data_file:dir rw_dir_perms;
+not_full_treble(`
+	allow platform_app mnld:unix_stream_socket connectto;
+')
+allow platform_app aee_dumpsys_data_file:file r_file_perms;
+allow platform_app aee_exp_vendor_file:dir search;
+allow platform_app aee_exp_vendor_file:dir { read getattr open };
+allow platform_app aee_exp_vendor_file:file { read getattr open };
+hal_client_domain(platform_app, mtk_hal_fm)
+hal_client_domain(platform_app, mtk_hal_log)
+get_prop(platform_app, debug_mdlogger_prop)
+get_prop(platform_app, debug_mtklog_prop)
+get_prop(platform_app, vendor_bluetooth_prop)
+get_prop(platform_app, mobile_log_prop)
+get_prop(platform_app, vendor_connsysfw_prop)
+hal_client_domain(platform_app, hal_mms)
+allow platform_app mtk_hal_camera:binder call;
+allow platform_app sw_sync_device:chr_file rw_file_perms;
+hal_client_domain(platform_app, mtk_hal_bgs)
+allow platform_app mtk_hal_bgs_hwservice:hwservice_manager find;
+binder_call(platform_app, mtk_hal_bgs)
+binder_call(mtk_hal_bgs, platform_app)
+binder_call(platform_app, mtk_hal_camera)
+binder_call(mtk_hal_camera, platform_app)
+allow platform_app proc_secmem:file r_file_perms;
+allow platform_app mobicore_tui_device:chr_file { read open ioctl };
+allow platform_app mobicore_user_device:chr_file rw_file_perms;
+not_full_treble(`
+	allow platform_app mobicore:unix_stream_socket connectto;
+')
+allow platform_app mobicore_data_file:file r_file_perms;
+allow platform_app mobicore_data_file:dir search;
+allow platform_app self:netlink_kobject_uevent_socket {create bind read setopt};
+allow platform_app fuseblk:dir create_dir_perms;
+allow platform_app fuseblk:file create_file_perms;
+allow platform_app mtk_advcamserver_service:service_manager find;
+allow platform_app mtk_hal_camera:binder call;
+allow platform_app mtk_radio_service:service_manager find;
+hal_client_domain(platform_app, hal_pq)
+hal_client_domain(platform_app, hal_allocator)
+allow platform_app mtk_hal_pplagent_hwservice:hwservice_manager find;
+allow platform_app ppl_agent:binder call;
+allow platform_app debugfs_ion:dir search;
+get_prop(platform_app, vendor_vt_prop)
+get_prop(platform_app, mtk_rcs_support_prop)
+get_prop(platform_app, mtk_em_tel_log_prop)
+get_prop(platform_app, persist_vendor_vzw_device_type)
+get_prop(platform_app, mtk_cdma_ecm_prop);
+get_prop(platform_app, mtk_wfc_entitlement_prop)
+get_prop(platform_app, mtk_cxp_vendor_prop)
+get_prop(platform_app, mtk_ims_prop)
+get_prop(platform_app, mtk_uce_support_prop)
+allow platform_app mtk_hal_neuralnetworks:binder { call transfer };
+get_prop(platform_app, mtk_cam_security_prop)
+binder_call(platform_app, mtk_hal_camera)
+binder_call(mtk_hal_camera, platform_app)
+get_prop(platform_app, mtk_subsidylock_prop)
+set_prop(platform_app, mtk_subsidylock_prop_connect)
+allow platform_app mtk_hal_dplanner_hwservice:hwservice_manager find;
+allow platform_app mtk_hal_dplanner:binder call;
+hal_client_domain(platform_app, md_monitor_hal);
+set_prop(platform_app, config_prop);
+get_prop(platform_app, init_svc_md_monitor_prop)
+get_prop(platform_app, mtk_cta_support_prop);
+allow platform_app mdla_device:chr_file { rw_file_perms };
+allow platform_app vpu_device:chr_file { rw_file_perms };
+get_prop(platform_app, mtk_clientapi_support_prop)
+allow platform_app volte_clientapi_ua_hwservice:hwservice_manager find ;
+allow platform_app volte_clientapi_ua:binder { call transfer };
+get_prop(platform_app, mtk_acs_url_prop)
+get_prop(platform_app, mtk_acs_version_prop)
+get_prop(platform_app, mtk_acs_support_prop)

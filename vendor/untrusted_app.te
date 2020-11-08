@@ -1,0 +1,20 @@
+allow untrusted_app proc_mtktz:dir search;
+allow untrusted_app proc_mtktz:file r_file_perms;
+hal_client_domain(untrusted_app, hal_mms)
+allow untrusted_app proc_secmem:file { read ioctl open };
+userdebug_or_eng(`
+	allow untrusted_app tkcore_admin_device:chr_file  { ioctl read write open };
+')
+allow untrusted_app fuseblk:dir search;
+allow untrusted_app fuseblk:file read;
+allow untrusted_app fuseblk:file rw_file_perms;
+userdebug_or_eng(`
+  allow untrusted_app coredump_file:dir { write };
+')
+allow untrusted_app vtservice:dir search;
+allow untrusted_app mediaserver:dir search;
+allow untrusted_app osi:tcp_socket { create connect write read bind accept listen getattr setattr getopt setopt };
+allow untrusted_app mtk_hal_neuralnetworks:binder { call transfer };
+allow untrusted_app debugfs_ion:dir search;
+allow untrusted_app mdla_device:chr_file { rw_file_perms };
+allow untrusted_app vpu_device:chr_file { rw_file_perms };

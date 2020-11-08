@@ -1,0 +1,77 @@
+type viarild_exec , exec_type, file_type, vendor_file_type;
+type viarild ,domain;
+init_daemon_domain(viarild)
+net_domain(viarild)
+allow viarild self:netlink_route_socket nlmsg_write;
+allow viarild kernel:system module_request;
+allow viarild self:capability { setuid net_admin net_raw };
+allow viarild cgroup:dir create_dir_perms;
+allow viarild radio_device:chr_file rw_file_perms;
+allow viarild radio_device:blk_file r_file_perms;
+allow viarild mtd_device:dir search;
+allow viarild efs_file:dir create_dir_perms;
+allow viarild efs_file:file create_file_perms;
+allow viarild bluetooth_efs_file:file r_file_perms;
+allow viarild bluetooth_efs_file:dir r_dir_perms;
+allow viarild sdcardfs:dir r_dir_perms;
+allow viarild proc:file write;
+set_prop(viarild, cdma_prop)
+set_prop(viarild, ril_cdma_report_prop)
+set_prop(viarild, ril_mux_report_case_prop)
+auditallow viarild system_radio_prop:property_service set;
+auditallow viarild net_radio_prop:property_service set;
+set_prop(viarild, vendor_radio_prop)
+set_prop(viarild, vendor_ril_ipo_prop)
+set_prop(viarild, mtk_telephony_sensitive_prop)
+set_prop(statusd, mtk_telephony_sensitive_prop)
+allow viarild tty_device:chr_file rw_file_perms;
+allow viarild self:netlink_socket create_socket_perms_no_ioctl;
+allow viarild self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+wakelock_use(viarild)
+allow viarild self:socket create_socket_perms_no_ioctl;
+allow viarild Vcodec_device:chr_file { read write open };
+allow viarild devmap_device:chr_file { read ioctl open };
+allow viarild devpts:chr_file { read write open };
+allow viarild ccci_device:chr_file { read write ioctl open };
+allow viarild devpts:chr_file ioctl;
+allow viarild misc_device:chr_file { read write open };
+allow viarild proc_lk_env:file { read ioctl open };
+allow viarild sysfs_vcorefs_pwrctrl:file { open write };
+allow viarild ril_active_md_prop:property_service set;
+allow statusd domain:dir search;
+allow viarild devpts:chr_file setattr;
+allow viarild device:dir write;
+allow viarild self:capability chown;
+allow viarild self:capability fowner;
+allow viarild device:dir add_name;
+allow viarild device:lnk_file create;
+allow viarild init:unix_stream_socket connectto;
+allow viarild property_socket:sock_file write;
+allow viarild self:capability setuid;
+allow viarild device:dir remove_name;
+allow viarild device:lnk_file unlink;
+allow viarild mal_mfi_socket:sock_file write;
+allow statusd device:dir write;
+allow statusd devpts:chr_file setattr;
+allow statusd device:dir add_name;
+allow statusd device:lnk_file create;
+allow statusd device:dir remove_name;
+allow statusd devpts:chr_file { read write };
+allow statusd device:lnk_file unlink;
+allow statusd devpts:chr_file open;
+allow statusd devpts:chr_file ioctl;
+allow viarild proc_net:file write;
+allow viarild aee_aedv:unix_stream_socket connectto;
+vndbinder_use(viarild);
+allow viarild node:rawip_socket node_bind;
+typeattribute viarild mtkimsapdomain;
+typeattribute statusd mtkimsapdomain;
+allowxperm viarild self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
+allow viarild sysfs_ccci:dir search;
+allow viarild sysfs_ccci:file r_file_perms;
+allowxperm statusd self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
+allow statusd sysfs_ccci:dir search;
+allow statusd sysfs_ccci:file r_file_perms;
+allow statusd vndbinder_device:chr_file { read write };
+allow statusd vndbinder_device:chr_file open;
+allow statusd vndbinder_device:chr_file ioctl;

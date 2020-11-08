@@ -1,0 +1,21 @@
+type hal_capi_default, domain;
+type hal_capi_default_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_capi_default)
+
+hal_client_domain(meta_tst, hal_capi)
+hal_client_domain(meta_tst, hal_allocator)
+hal_client_domain(platform_app, hal_capi)
+hal_client_domain(hal_capi_default, hal_allocator)
+hal_server_domain(hal_capi_default, hal_capi)
+
+add_hwservice(hal_capi_server, hal_capi_hwservice)
+
+allow hal_capi_client hal_capi_hwservice:hwservice_manager find;
+allow meta_tst hidl_memory_hwservice:hwservice_manager find;
+allow hal_capi_default teei_client_device:chr_file { open ioctl read write };
+
+hwbinder_use(hal_capi_default);
+binder_call(hal_capi_client, hal_capi_server)
+
+set_prop(hal_capi_default, soter_teei_prop)

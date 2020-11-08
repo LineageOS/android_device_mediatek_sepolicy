@@ -1,0 +1,4 @@
+binder_call(hal_clientapi_client, hal_clientapi_server)
+binder_call(hal_clientapi_server, hal_clientapi_client)
+
+allow hal_clientapi_client volte_clientapi_ua_hwservice:hwservice_manager find;

@@ -1,0 +1,12 @@
+allow install_recovery bootimg_device:chr_file { open read write };
+allow install_recovery recovery_device:chr_file { open read write };
+allow install_recovery tee_part_device:chr_file ~rename;
+allow install_recovery para_block_device:blk_file rw_file_perms;
+allow install_recovery recovery_block_device:blk_file rw_file_perms;
+dontaudit install_recovery system_file:file entrypoint;
+allow install_recovery mtd_device:dir search;
+allow install_recovery mtd_device:chr_file { open read write ioctl };
+allow install_recovery boot_block_device:blk_file { open read };
+allow install_recovery block_device:dir { open read };
+allow install_recovery mtd_device:blk_file rw_file_perms;
+allow install_recovery tmpfs:lnk_file read;

@@ -1,0 +1,5 @@
+hal_client_domain(priv_app, hal_mms)
+allow priv_app mtk_radio_service:service_manager find;
+hal_client_domain(priv_app, hal_pq)
+hal_client_domain(priv_app, hal_allocator)
+allow priv_app debugfs_ion:dir search;

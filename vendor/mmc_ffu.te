@@ -1,0 +1,6 @@
+type mmc_ffu, domain;
+type mmc_ffu_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(mmc_ffu)
+allow mmc_ffu block_device:dir r_dir_perms;
+allow mmc_ffu misc_sd_device:chr_file r_file_perms;
+allow mmc_ffu bootdevice_block_device:blk_file rw_file_perms;

@@ -1,0 +1,168 @@
+allow mediaserver camera_isp_device:chr_file rw_file_perms;
+allow mediaserver ccu_device:chr_file rw_file_perms;
+allow mediaserver vpu_device:chr_file rw_file_perms;
+allow mediaserver kd_camera_hw_device:chr_file rw_file_perms;
+allow mediaserver seninf_device:chr_file rw_file_perms;
+allow mediaserver self:capability { setuid ipc_lock sys_nice };
+allow mediaserver sysfs_wake_lock:file rw_file_perms;
+allow mediaserver MTK_SMI_device:chr_file r_file_perms;
+allow mediaserver camera_pipemgr_device:chr_file r_file_perms;
+allow mediaserver kd_camera_flashlight_device:chr_file rw_file_perms;
+allow mediaserver lens_device:chr_file rw_file_perms;
+allow mediaserver sdcard_type:dir { w_dir_perms create };
+allow mediaserver sdcard_type:file create;
+allow mediaserver nvram_data_file:lnk_file read;
+allow mediaserver nvdata_file:lnk_file read;
+allow mediaserver sdcard_type:dir remove_name;
+allow mediaserver sdcard_type:file unlink;
+allow mediaserver nvram_device:chr_file rw_file_perms;
+allow mediaserver self:capability { net_admin };
+allow mediaserver devmap_device:chr_file { ioctl };
+allow mediaserver system_data_file:file open;
+allow mediaserver bluetooth:unix_dgram_socket sendto;
+allow mediaserver bt_a2dp_stream_socket:sock_file write;
+allow mediaserver bt_int_adp_socket:sock_file write;
+allow mediaserver camera_sysram_device:chr_file r_file_perms;
+allow mediaserver Vcodec_device:chr_file rw_file_perms;
+allow mediaserver MtkCodecService:binder call;
+allow mediaserver ccci_device:chr_file rw_file_perms;
+allow mediaserver eemcs_device:chr_file rw_file_perms;
+allow mediaserver devmap_device:chr_file r_file_perms;
+allow mediaserver ebc_device:chr_file rw_file_perms;
+allow mediaserver nvram_device:blk_file rw_file_perms;
+allow mediaserver bootdevice_block_device:blk_file rw_file_perms;
+allow mediaserver mtk_sched_device:chr_file rw_file_perms;
+allow mediaserver block_device:dir { write search };
+allow mediaserver fm_device:chr_file rw_file_perms;
+allow mediaserver block_device:dir search;
+allow mediaserver FM50AF_device:chr_file rw_file_perms;
+allow mediaserver AD5820AF_device:chr_file rw_file_perms;
+allow mediaserver DW9714AF_device:chr_file rw_file_perms;
+allow mediaserver DW9814AF_device:chr_file rw_file_perms;
+allow mediaserver AK7345AF_device:chr_file rw_file_perms;
+allow mediaserver DW9714A_device:chr_file rw_file_perms;
+allow mediaserver LC898122AF_device:chr_file rw_file_perms;
+allow mediaserver LC898212AF_device:chr_file rw_file_perms;
+allow mediaserver BU6429AF_device:chr_file rw_file_perms;
+allow mediaserver DW9718AF_device:chr_file rw_file_perms;
+allow mediaserver BU64745GWZAF_device:chr_file rw_file_perms;
+allow mediaserver MAINAF_device:chr_file rw_file_perms;
+allow mediaserver MAIN2AF_device:chr_file rw_file_perms;
+allow mediaserver SUBAF_device:chr_file rw_file_perms;
+allow mediaserver bootanim:binder { transfer call };
+allow mediaserver mtkbootanimation:binder { transfer call };
+allow mediaserver sdcard_type:file append;
+allow mediaserver camera_fdvt_device:chr_file rw_file_perms;
+binder_call(mediaserver,MtkCodecService)
+allow mediaserver graphics_device:chr_file rw_file_perms;
+allow mediaserver smartpa_device:chr_file rw_file_perms;
+allow mediaserver audiocmdservice_atci:binder call;
+binder_call(mediaserver,audiocmdservice_atci)
+allow mediaserver mtk_jpeg_device:chr_file r_file_perms;
+allow mediaserver uhid_device:chr_file rw_file_perms;
+allow mediaserver CAM_CAL_DRV_device:chr_file rw_file_perms;
+allow mediaserver CAM_CAL_DRV1_device:chr_file rw_file_perms;
+allow mediaserver CAM_CAL_DRV2_device:chr_file rw_file_perms;
+allow mediaserver vow_device:chr_file rw_file_perms;
+allow mediaserver rpc_socket:sock_file write;
+allow mediaserver ttySDIO_device:chr_file rw_file_perms;
+allow mediaserver surfaceflinger:file getattr;
+allow mediaserver sysfs_lowmemorykiller:file { read open };
+allow mediaserver proc_mtkcooler:dir search;
+allow mediaserver proc_mtktz:dir search;
+allow mediaserver proc_thermal:dir search;
+allow mediaserver qemu_pipe_device:chr_file rw_file_perms;
+allow mediaserver system_server:unix_stream_socket { read write };
+allow mediaserver radio_data_file:dir search;
+allow mediaserver radio_data_file:file open;
+allow mediaserver radio:dir { search read };
+allow mediaserver radio:file r_file_perms;
+allow mediaserver radio_data_file:file open;
+allow mediaserver untrusted_app:dir search;
+allow mediaserver offloadservice_device:chr_file rw_file_perms;
+allow mediaserver sensorservice_service:service_manager find;
+allow mediaserver system_data_file:dir write;
+allow mediaserver storage_file:lnk_file {read write};
+allow mediaserver mnt_user_file:dir {write read search};
+allow mediaserver mnt_user_file:lnk_file {read write};
+allow mediaserver surfaceflinger:fifo_file {read write};
+allow mediaserver camera_dpe_device:chr_file rw_file_perms;
+allow mediaserver camera_tsf_device:chr_file rw_file_perms;
+allow mediaserver camera_rsc_device:chr_file rw_file_perms;
+allow mediaserver proc_ged:file rw_file_perms;
+allowxperm mediaserver proc_ged:file ioctl { proc_ged_ioctls };
+allow mediaserver camera_gepf_device:chr_file rw_file_perms;
+allow mediaserver flashlight_device:chr_file rw_file_perms;
+allow dumpstate surfaceflinger:fifo_file rw_file_perms;
+allow mediaserver camera_wpe_device:chr_file rw_file_perms;
+allow mediaserver gpu_device:dir search;
+allow mediaserver sw_sync_device:chr_file rw_file_perms;
+allow mediaserver camera_owe_device:chr_file rw_file_perms;
+allow mediaserver mtk_cmdq_device:chr_file { read ioctl open };
+allow mediaserver mtk_mdp_device:chr_file rw_file_perms;
+allow mediaserver graphics_device:chr_file { ioctl open read };
+allow mediaserver graphics_device:dir search;
+allow mediaserver camera_dip_device:chr_file rw_file_perms;
+allow mediaserver camera_mfb_device:chr_file rw_file_perms;
+allow mediaserver proc_perfmgr:dir {read search};
+allow mediaserver proc_perfmgr:file r_file_perms;
+allowxperm mediaserver proc_perfmgr:file ioctl {
+ PERFMGR_FPSGO_DEQUEUE
+ PERFMGR_FPSGO_QUEUE_CONNECT
+ PERFMGR_FPSGO_QUEUE
+ PERFMGR_FPSGO_BQID
+};
+allow mediaserver  mtk_hal_keymanage:binder call;
+hal_client_domain(mediaserver , hal_keymaster)
+allow mediaserver mtk_hal_keymanage_hwservice:hwservice_manager find;
+allow mediaserver mobicore_data_file:file getattr;
+allow mediaserver mobicore_data_file:file getattr;
+not_full_treble(`
+    allow mediaserver mobicore:unix_stream_socket connectto;
+')
+allow mediaserver mobicore_data_file:file { getattr read};
+allow mediaserver mobicore_user_device:chr_file { read write open ioctl};
+allow mediaserver persist_data_file:file { read write getattr };
+not_full_treble(`
+    allow mediaserver statusd:unix_stream_socket connectto;
+')
+allow mediaserver offloadservice_device:chr_file { read write ioctl open };
+allow mediaserver mtk_perf_service:service_manager find;
+allow mediaserver surfaceflinger:dir search;
+allow mediaserver surfaceflinger:file { read open };
+allow mediaserver proc_thermal:file { write getattr open };
+allow mediaserver proc_mtkcooler:file { read write open };
+allow mediaserver proc_mtktz:file { read write open };
+allow mediaserver proc_thermal:file { read write open };
+allow mediaserver ancservice_device:chr_file { read write ioctl open };
+allow mediaserver dri_device:chr_file { read write open ioctl };
+allow mediaserver gas_srv_service:service_manager find;
+get_prop(mediaserver, mtk_em_video_log_acodec_prop)
+get_prop(mediaserver, mtk_em_video_log_sf_postbuffer_prop)
+get_prop(mediaserver, mtk_em_video_log_omx_prop)
+get_prop(mediaserver, mtk_em_video_log_vdec_prop)
+get_prop(mediaserver, mtk_em_video_log_svp_prop)
+get_prop(mediaserver, mtk_em_video_log_mjc_prop)
+get_prop(mediaserver, mtk_em_video_venc_h264_prop)
+hal_client_domain(mediaserver, hal_pq)
+hal_client_domain(mediaserver, hal_allocator)
+hal_client_domain(mediaserver, hal_mtkcodecservice)
+allow mediaserver vtservice:binder { transfer call };
+allow mediaserver vtservice:fd use;
+allow mediaserver platform_app:dir search;
+allow mediaserver platform_app:file { read open };
+allow mediaserver debugfs_ged:dir search;
+allow mediaserver debugfs_ged:file { getattr open write };
+allow mediaserver mediaprovider:dir search;
+allow mediaserver platform_app:file getattr;
+allow mediaserver system_app:dir search;
+allow mediaserver system_app:file read;
+allow mediaserver system_app:file open;
+allow mediaserver system_app_data_file:file { read getattr };
+set_prop(mediaserver,system_prop)
+get_prop(mediaserver, media_wfd_prop)
+allowxperm mediaserver proc_perfmgr:file ioctl {
+  PERFMGR_FPSGO_QUEUE
+  PERFMGR_FPSGO_DEQUEUE
+};
+hal_client_domain(mediaserver,hal_gpu)

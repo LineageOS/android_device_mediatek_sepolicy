@@ -1,0 +1,2 @@
+hal_client_domain(loghidlsysservice, mtk_hal_log)
+allow loghidlsysservice connsyslogger:unix_stream_socket connectto;

@@ -1,0 +1,25 @@
+type audiocmdservice_atci ,domain;
+type audiocmdservice_atci_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(audiocmdservice_atci)
+
+hal_client_domain(audiocmdservice_atci, hal_audio)
+
+unix_socket_connect(atcid, atci-audio, audiocmdservice_atci);
+
+allow audiocmdservice_atci self:unix_stream_socket { create_socket_perms read write };
+allow audiocmdservice_atci { block_device device }:dir { write search };
+allow audiocmdservice_atci mnt_user_file:dir rw_dir_perms;
+allow audiocmdservice_atci { mnt_user_file storage_file }:lnk_file rw_file_perms;
+allow audiocmdservice_atci bootdevice_block_device:blk_file { read write };
+allow audiocmdservice_atci kmsg_device:chr_file w_file_perms;
+
+vndbinder_use(audiocmdservice_atci)
+binder_call(audiocmdservice_atci,mtk_hal_audio);
+hwbinder_use(audiocmdservice_atci)
+
+get_prop(audiocmdservice_atci, hwservicemanager_prop);
+
+userdebug_or_eng(`
+  allow audiocmdservice_atci self:capability { sys_nice fowner chown fsetid setuid ipc_lock net_admin};
+')

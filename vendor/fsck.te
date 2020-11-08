@@ -1,0 +1,12 @@
+allow fsck protect1_block_device:blk_file rw_file_perms;
+allow fsck protect2_block_device:blk_file rw_file_perms;
+allow fsck nvdata_device:blk_file rw_file_perms;
+allow fsck persist_block_device:blk_file rw_file_perms;
+allow fsck nvcfg_block_device:blk_file rw_file_perms;
+allow fsck odm_block_device:blk_file rw_file_perms;
+allow fsck oem_block_device:blk_file rw_file_perms;
+allow fsck system_block_device:blk_file getattr;
+allow fsck sysfs_fs_ext4_features:dir search;
+allow init fsck_exec: lnk_file r_file_perms;
+
+allowxperm fsck userdata_block_device:blk_file ioctl BLKSECDISCARD;

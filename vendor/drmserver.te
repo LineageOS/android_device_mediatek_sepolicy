@@ -1,0 +1,45 @@
+allow drmserver proc_ged:file rw_file_perms;
+allow drmserver nvram_agent_binder:binder call;
+allow drmserver platform_app:dir search;
+allow drmserver platform_app:file { read getattr open };
+allow drmserver property_socket:sock_file write;
+allow drmserver radio_data_file:file { read getattr open };
+allow drmserver sdcard_type:file open;
+allow drmserver system_app:dir search;
+allow drmserver system_app:file { read open getattr };
+allow drmserver mediaserver:dir search;
+allow drmserver mediaserver:file { read open getattr };
+allow drmserver untrusted_app:dir search;
+allow drmserver untrusted_app:file { read open getattr };
+allow drmserver radio_data_file:dir search;
+allow drmserver surfaceflinger:fd use;
+allow drmserver mediaserver:fifo_file read;
+allow drmserver mediaserver:fifo_file write;
+allow drmserver system_app:process getattr;
+allow drmserver mnt_user_file:dir search;
+allow drmserver mnt_user_file:lnk_file read;
+allow drmserver storage_file:lnk_file read;
+
+use_drmservice(system_server)
+
+allow drmserver system_server:file getattr;
+allow system_server drmserver:drmservice openDecryptSession;
+allow drmserver nvram_agent_service:service_manager find;
+allow drmserver system_app_data_file:file read;
+allow drmserver vfat:file open;
+allow drmserver mnt_media_rw_file:dir search;
+allow drmserver nfc:dir search;
+allow drmserver nfc:file { read getattr open };
+allow drmserver mnt_expand_file:dir search;
+allow drmserver activity_service:service_manager find;
+allow drmserver priv_app:dir search;
+allow drmserver priv_app:file { read getattr open };
+allow drmserver media_rw_data_file:file write;
+allow drmserver ringtone_file:file read;
+allow drmserver proc_uptime:file r_file_perms;
+allow drmserver mediaextractor:dir search;
+allow drmserver mediaextractor:file { read open getattr };
+allow drmserver untrusted_app_25:dir search;
+allow drmserver untrusted_app_25:file { getattr open read };
+allow drmserver proc_uptime:file read;
+allow drmserver sdcardfs:file open;

@@ -1,0 +1,5 @@
+binder_call(mtk_hal_fm_client, mtk_hal_fm_server)
+binder_call(mtk_hal_fm_server, mtk_hal_fm_client)
+add_hwservice(mtk_hal_fm_server, mtk_hal_fm_hwservice)
+allow mtk_hal_fm_client mtk_hal_fm_hwservice:hwservice_manager find;
+vndbinder_use(mtk_hal_fm)

@@ -1,0 +1,64 @@
+type mtkrild_exec , exec_type, file_type, vendor_file_type;
+type mtkrild ,domain;
+init_daemon_domain(mtkrild)
+net_domain(mtkrild)
+allow mtkrild kernel:system module_request;
+allow mtkrild self:capability { setuid net_admin net_raw };
+allow mtkrild cgroup:dir create_dir_perms;
+auditallow mtkrild net_radio_prop:property_service set;
+auditallow mtkrild system_radio_prop:property_service set;
+set_prop(mtkrild, ril_active_md_prop)
+set_prop(mtkrild, ril_cdma_report_prop)
+set_prop(mtkrild, ril_mux_report_case_prop)
+set_prop(mtkrild, ctl_muxreport-daemon_prop)
+set_prop(mtkrild, mtk_telephony_sensitive_prop)
+wakelock_use(mtkrild)
+allow mtkrild efs_file:dir create_dir_perms;
+allow mtkrild efs_file:file create_file_perms;
+allow mtkrild bluetooth_efs_file:file r_file_perms;
+allow mtkrild bluetooth_efs_file:dir r_dir_perms;
+allow mtkrild sdcardfs:dir r_dir_perms;
+allow mtkrild proc_net:file w_file_perms;
+allow mtkrild self:netlink_route_socket nlmsg_write;
+allow mtkrild radio_device:chr_file rw_file_perms;
+allow mtkrild radio_device:blk_file r_file_perms;
+allow mtkrild mtd_device:dir search;
+allow mtkrild tty_device:chr_file rw_file_perms;
+allow mtkrild eemcs_device:chr_file { rw_file_perms };
+allow mtkrild devmap_device:chr_file { r_file_perms };
+allow mtkrild devpts:chr_file { rw_file_perms };
+allow mtkrild ccci_device:chr_file { rw_file_perms };
+allow mtkrild misc_device:chr_file { rw_file_perms };
+allow mtkrild proc_lk_env:file rw_file_perms;
+allow mtkrild para_block_device:blk_file { rw_file_perms };
+allow mtkrild block_device:dir search;
+allow mtkrild platform_app:fd use;
+allow mtkrild radio:fd use;
+allow mtkrild mal_mfi_socket:sock_file { w_file_perms };
+allow mtkrild sysfs_ccci:dir search;
+allow mtkrild sysfs_ccci:file r_file_perms;
+allow mtkrild aee_aedv:unix_stream_socket connectto;
+allowxperm mtkrild self:udp_socket ioctl {SIOCDELRT SIOCSIFFLAGS SIOCSIFADDR SIOCKILLADDR SIOCDEVPRIVATE SIOCDEVPRIVATE_1};
+vndbinder_use(mtkrild)
+allow mtkrild node:rawip_socket node_bind;
+allow mtkrild sysfs:file open;
+allow mtkrild sysfs:file read;
+set_prop(mtkrild, vendor_ril_ipo_prop)
+get_prop(mtkrild, tel_switch_prop)
+set_prop(mtkrild, vendor_radio_prop)
+set_prop(mtkrild, mtk_cxp_vendor_prop)
+allow mtkrild mnt_vendor_file:dir search;
+allow mtkrild mnt_vendor_file:file create_file_perms;
+allow mtkrild nvdata_file:dir create_dir_perms;
+allow mtkrild nvdata_file:file create_file_perms;
+set_prop(mtkrild, mtk_ss_vendor_prop)
+get_prop(mtkrild, mtk_wfc_serv_prop)
+get_prop(mtkrild, exported3_radio_prop)
+set_prop(mtkrild, gsm0710muxd_prop)
+typeattribute mtkrild mtkimsapdomain;
+set_prop(mtkrild, vendor_logmuch_prop)
+set_prop(mtkrild, cdma_prop)
+set_prop(mtkrild, mtk_vsim_prop)
+set_prop(mtkrild, mtk_subsidylock_prop)
+set_prop(mtkrild, mtk_ims_prop)
+set_prop(rild, mtk_provision_prop)

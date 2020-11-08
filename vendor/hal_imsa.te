@@ -1,0 +1,3 @@
+binder_call(hal_imsa_client, hal_imsa_server)
+binder_call(hal_imsa_server, hal_imsa_client)
+allow hal_imsa_client mtk_hal_imsa_hwservice :hwservice_manager find;
