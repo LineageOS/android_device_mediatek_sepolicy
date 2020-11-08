@@ -1,0 +1,12 @@
+type batterywarning_exec , system_file_type, exec_type, file_type;
+type batterywarning ,domain;
+typeattribute batterywarning coredomain;
+
+init_daemon_domain(batterywarning)
+
+binder_use(batterywarning)
+
+allow batterywarning system_server:binder call;
+allow batterywarning activity_service:service_manager find;
+allow batterywarning sysfs_battery_warning:file { open read getattr };
+allow batterywarning self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;

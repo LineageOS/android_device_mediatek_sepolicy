@@ -1,0 +1,3 @@
+allow untrusted_app_all mtk_radio_service:service_manager find;
+
+get_prop(untrusted_app_all, netflix_bsp_rev_prop)

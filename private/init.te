@@ -1,0 +1,8 @@
+allow init self:capability sys_module;
+allow init system_file:system module_load;
+allow init debugfs_tracing:dir write;
+allow init debugfs_tracing:file write;
+allow init sysfs_devices_system_cpu:file relabelfrom;
+
+set_prop(init, mtk_cta_set_prop)
+set_prop(init, mtk_rsc_sys_prop)

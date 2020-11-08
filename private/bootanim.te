@@ -1,0 +1,17 @@
+hal_client_domain(bootanim, hal_gpu)
+
+allow bootanim mediaserver:binder {call transfer};
+allow bootanim mediaserver_service:service_manager find;
+
+allow bootanim audioserver:binder {call transfer};
+allow bootanim audioserver_service:service_manager find;
+
+allow bootanim property_socket:sock_file write;
+allow bootanim init:unix_stream_socket connectto;
+allow bootanim debug_prop:property_service set;
+
+allow bootanim resourcecache_data_file:dir search;
+allow bootanim resourcecache_data_file:file { read getattr open };
+
+allow bootanim surfaceflinger:fifo_file rw_file_perms;
+allow bootanim gpu_device:dir search;

@@ -1,0 +1,47 @@
+type mobile_log_d_exec, system_file_type, exec_type, file_type;
+typeattribute mobile_log_d coredomain;
+
+init_daemon_domain(mobile_log_d)
+
+domain_auto_trans(mobile_log_d, logcat_exec, dumpstate)
+
+dontaudit mobile_log_d untrusted_app:fd use;
+dontaudit mobile_log_d isolated_app:fd use;
+
+set_prop(mobile_log_d, debug_prop)
+
+unix_socket_connect(mobile_log_d, logdr, logd);
+
+allow mobile_log_d kernel:system syslog_mod;
+allow mobile_log_d self:capability { setuid setgid chown fowner fsetid };
+allow mobile_log_d self:capability { setuid chown setgid };
+allow mobile_log_d self:capability2 syslog;
+allow mobile_log_d system_file:file execute_no_trans;
+allow mobile_log_d shell_exec:file rx_file_perms;
+allow mobile_log_d logcat_exec:file rx_file_perms;
+allow mobile_log_d storage_file:dir create_dir_perms;
+allow mobile_log_d storage_file:file create_file_perms;
+allow mobile_log_d storage_file:lnk_file create_file_perms;
+allow mobile_log_d mnt_user_file:dir create_dir_perms;
+allow mobile_log_d mnt_user_file:lnk_file create_file_perms;
+allow mobile_log_d sdcard_type:dir create_dir_perms;
+allow mobile_log_d sdcard_type:file create_file_perms;
+allow mobile_log_d vfat:dir create_dir_perms;
+allow mobile_log_d vfat:file create_file_perms;
+allow mobile_log_d mnt_media_rw_file:dir create_dir_perms;
+allow mobile_log_d mnt_media_rw_file:lnk_file create_file_perms;
+allow mobile_log_d toolbox_exec:file rx_file_perms;
+allow mobile_log_d rootfs:file r_file_perms;
+allow mobile_log_d device_logging_prop:file { getattr open };
+allow mobile_log_d mmc_prop:file { getattr open };
+allow mobile_log_d safemode_prop:file { getattr open };
+allow mobile_log_d media_rw_data_file:file  create_file_perms;
+allow mobile_log_d media_rw_data_file:dir create_dir_perms;
+allow mobile_log_d debugfs_tracing:dir create_dir_perms;
+allow mobile_log_d debugfs_tracing_instances:dir create_dir_perms;
+allow mobile_log_d debugfs_tracing_instances:file create_file_perms;
+allow mobile_log_d debuglog_data_file:dir {relabelto create_dir_perms};
+allow mobile_log_d debuglog_data_file:file create_file_perms;
+allow mobile_log_d mcupm_device:chr_file r_file_perms;
+allow mobile_log_d sysfs_mcupm:file w_file_perms;
+allow mobile_log_d sysfs_mcupm:dir search;

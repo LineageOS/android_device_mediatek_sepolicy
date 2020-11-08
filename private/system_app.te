@@ -1,0 +1,17 @@
+hal_client_domain(system_app, hal_gpu)
+
+allow system_app vfat:dir create;
+allow system_app media_rw_data_file:dir {r_dir_perms w_dir_perms};
+allow system_app media_rw_data_file:file {r_file_perms w_file_perms};
+allow system_app system_data_file:dir { read open };
+allow system_app aee_aed:unix_stream_socket connectto;
+
+set_prop(system_app, net_dns_prop);
+set_prop(system_app, config_prop);
+set_prop(system_app, mtk_atci_sys_prop);
+set_prop(system_app, mtk_permission_control_prop);
+
+get_prop(system_app, mtk_aal_prop);
+get_prop(system_app, mtk_cta_set_prop);
+get_prop(system_app, mtk_rsc_sys_prop);
+get_prop(system_app, init_svc_md_monitor_prop)

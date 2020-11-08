@@ -1,0 +1,11 @@
+type terservice_exec, system_file_type, exec_type, file_type;
+typeattribute terservice coredomain;
+
+init_daemon_domain(terservice)
+
+allow terservice terservice_service:service_manager add;
+
+set_prop(terservice, terservice_prop)
+
+binder_use(terservice)
+binder_service(terservice)
