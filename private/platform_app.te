@@ -1,0 +1,17 @@
+hal_client_domain(platform_app, hal_power)
+hal_client_domain(platform_app, hal_gpu)
+
+allow platform_app system_app_service:service_manager find;
+allow platform_app init:unix_stream_socket connectto;
+allow platform_app debuglog_data_file:dir create_dir_perms;
+allow platform_app debuglog_data_file:file create_file_perms;
+allow platform_app system_app_data_file:file {read write};
+allow platform_app nfc_service:service_manager find;
+allow platform_app mtk_connmetrics_service:service_manager find;
+allow platform_app aal_service:service_manager { find };
+allow platform_app proc_cl_cam_status:file r_file_perms;
+allow platform_app camerapostalgo_service:service_manager find;
+
+get_prop(platform_app, mtk_cta_set_prop);
+get_prop(platform_app, mtk_rsc_sys_prop);
+set_prop(platform_app, ctl_campostalgo_prop);

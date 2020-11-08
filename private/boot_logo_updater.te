@@ -1,0 +1,21 @@
+typeattribute boot_logo_updater coredomain;
+type boot_logo_updater_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(boot_logo_updater)
+
+allow boot_logo_updater system_prop:property_service set;
+allow boot_logo_updater graphics_device:chr_file rw_file_perms;
+allow boot_logo_updater init:unix_stream_socket connectto;
+allow boot_logo_updater property_socket:sock_file write;
+allow boot_logo_updater block_device:dir search;
+allow boot_logo_updater graphics_device:dir search;
+allow boot_logo_updater mtd_device:chr_file r_file_perms;
+allow boot_logo_updater mtd_device:dir search;
+allow boot_logo_updater device:dir write;
+allow boot_logo_updater kmsg_device:chr_file w_file_perms;
+allow boot_logo_updater rootfs:file r_file_perms;
+allow boot_logo_updater sysfs:dir read;
+allow boot_logo_updater mtd_device:blk_file read;
+allow boot_logo_updater sysfs:dir open;
+allow boot_logo_updater system_data_file:dir write;
+allow boot_logo_updater mtd_device:blk_file open;

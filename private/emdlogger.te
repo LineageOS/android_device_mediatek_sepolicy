@@ -1,0 +1,40 @@
+type emdlogger_exec, system_file_type, exec_type, file_type;
+typeattribute emdlogger coredomain;
+
+init_daemon_domain(emdlogger)
+
+binder_use(emdlogger)
+binder_service(emdlogger)
+
+allow emdlogger sdcard_type:dir { create_dir_perms };
+allow emdlogger sdcard_type:file { create_file_perms };
+allow emdlogger platform_app:unix_stream_socket connectto;
+allow emdlogger shell_exec:file { rx_file_perms };
+allow emdlogger system_file:file execute_no_trans;
+allow emdlogger zygote_exec:file { rx_file_perms };
+allow emdlogger vfat:dir create_dir_perms;
+allow emdlogger vfat:file create_file_perms;
+allow emdlogger mnt_user_file:dir search;
+allow emdlogger mnt_user_file:lnk_file read;
+allow emdlogger storage_file:lnk_file read;
+allow emdlogger mnt_media_rw_file:dir search;
+allow emdlogger rootfs:file r_file_perms;
+allow emdlogger storage_file:dir { create_dir_perms };
+allow emdlogger tmpfs:lnk_file read;
+allow emdlogger storage_file:file { create_file_perms };
+allow emdlogger system_file:dir read;
+allow emdlogger toolbox_exec:file rx_file_perms;
+allow emdlogger media_rw_data_file:file  { create_file_perms };
+allow emdlogger media_rw_data_file:dir { create_dir_perms };
+allow emdlogger proc_cmdline:file { read getattr open };
+allow emdlogger sysfs_dt_firmware_android:dir { read open search };
+allow emdlogger tmpfs:dir write;
+allow emdlogger sysfs_dt_firmware_android:file { read open getattr };
+allow emdlogger system_file:dir open;
+allow emdlogger vendor_default_prop:file { read getattr open };
+allow emdlogger mddb_filter_data_file:dir { r_dir_perms };
+allow emdlogger mddb_filter_data_file:file { r_file_perms };
+allow emdlogger debuglog_data_file:dir {relabelto create_dir_perms};
+allow emdlogger debuglog_data_file:file create_file_perms;
+
+get_prop(emdlogger, system_prop)

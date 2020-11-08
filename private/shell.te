@@ -1,0 +1,10 @@
+allow shell debuglog_data_file:dir r_dir_perms;
+allow shell debuglog_data_file:file r_file_perms;
+
+userdebug_or_eng(`
+  allow shell mdi_redirector:unix_stream_socket { connectto };
+  allow shell mdmi_redirector:unix_stream_socket { connectto };
+  set_prop(shell, ctl_start_prop);
+  set_prop(shell, ctl_stop_prop);
+  get_prop(shell, mtk_dmc_prop);
+')

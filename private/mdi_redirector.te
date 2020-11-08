@@ -1,0 +1,17 @@
+type mdi_redirector_exec ,exec_type, file_type, system_file_type;
+type mdi_redirector, domain;
+typeattribute mdi_redirector coredomain;
+
+init_daemon_domain(mdi_redirector)
+
+hal_client_domain(mdi_redirector, mtk_hal_dmc)
+net_domain(mdi_redirector)
+
+allow mdi_redirector fwmarkd_socket:sock_file write;
+allow mdi_redirector self:tcp_socket { create_stream_socket_perms };
+allow mdi_redirector self:udp_socket { create_stream_socket_perms };
+allow mdi_redirector node:tcp_socket node_bind;
+allow mdi_redirector port:tcp_socket name_bind;
+allow mdi_redirector netd:unix_stream_socket { connectto };
+
+get_prop(mdi_redirector, mtk_dmc_prop)

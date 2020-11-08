@@ -1,0 +1,20 @@
+hal_client_domain(dumpstate, hal_camera)
+
+allow dumpstate fuse:dir { w_dir_perms };
+allow dumpstate fuse:file { write create open setattr append };
+allow dumpstate mnt_user_file:dir search;
+allow dumpstate mnt_user_file:lnk_file read;
+allow dumpstate storage_file:lnk_file read;
+allow dumpstate kmsg_device:chr_file r_file_perms;
+allow dumpstate fuse:file ioctl;
+allow dumpstate debugfs_tracing:file { write read open };
+allow dumpstate gpu_device:dir search;
+allow dumpstate hal_camera_hwservice:hwservice_manager find;
+
+userdebug_or_eng(`allow dumpstate debugfs_tracing_debug:file { r_file_perms write };')
+
+allow dumpstate sysfs_vibrator:file write;
+allow dumpstate self:capability sys_nice;
+allow dumpstate mobile_log_d:fd use;
+allow dumpstate mobile_log_d:fifo_file write;
+allow dumpstate mobile_log_d:unix_stream_socket { read write };
