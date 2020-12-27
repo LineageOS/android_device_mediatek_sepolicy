@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ec2bf64_27f89ba3",
+        "filename": "non_plat/hal_fingerprint_default.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 18177
+      },
+      "writtenOn": "2020-12-27T18:40:00Z",
+      "side": 1,
+      "message": "If at all possible I would avoid granting the \"ioctl\" permission.  ioctl is a Pandora\u0027s Box of permissions, they vary from things like BLKSSZGET which simply reads the block size, to BLKDISCARD which erases blocks.\n\nI would instead use \"allowxperm\" and explicitly allow only certain ioctls.  Take a look at system/sepolicy/public/ioctl_defines for a series of known ioctl macros (see if any of these matches the \"ioctlcmd\" field), otherwise you would end up needing to specify the hexadecimal values.",
+      "revId": "1332cc3745aefe4ab4368e31ce494d5ffcce6794",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
