@@ -693,3 +693,6 @@
 
 # Keymaster
 /dev/ut_keymaster u:object_r:ut_keymaster_device:s0
+
+# Camera
+/data/vendor/camera(/.*)?              u:object_r:camera_vendor_data_file:s0
