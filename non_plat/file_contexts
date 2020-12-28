@@ -699,3 +699,7 @@
 
 # Thermal
 /(system\/vendor|vendor)/bin/thermal u:object_r:thermal_exec:s0
+
+# TEE
+/(vendor|system\/vendor)/bin/teei_daemon u:object_r:tee_exec:s0
+/(vendor|system\/vendor)/bin/teei_loader u:object_r:tee_exec:s0
