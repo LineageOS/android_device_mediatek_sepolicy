@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8c939da_3dfc4a16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 18177
+      },
+      "writtenOn": "2020-12-28T01:26:53Z",
+      "side": 1,
+      "message": "The \"\\x0a\" looks suspiciously like a line ending which got accidentally quoted.  Might you want to remove this?",
+      "revId": "1957ab0ba82de2a38256b6426aa817c0b4379a29",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
