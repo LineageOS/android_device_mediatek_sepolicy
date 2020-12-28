@@ -687,3 +687,6 @@
 /vendor/bin/aeev  u:object_r:aee_aedv_exec:s0
 
 /dev/teei_fp u:object_r:teei_fp_device:s0
+
+# Keymaster
+/dev/ut_keymaster u:object_r:ut_keymaster_device:s0
