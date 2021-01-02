@@ -1,1 +1,2 @@
 type volte_ua_socket, file_type;
+type volte_imcb_socket, file_type;
